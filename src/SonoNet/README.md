@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 10:33:37
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-18 22:32:28
+ * @LastEditTime: 2022-03-18 22:38:51
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/SonoNet/README.md
  * @Description: PyTorch implementation of SonoNet.
  * Init from https://github.com/rdroste/SonoNet_PyTorch
@@ -32,7 +32,7 @@ PyTorch implementation of the original models.py file.
 sononet/SonoNet16.pth, sononet/SonoNet32.pth, sononet/SonoNet64.pth:  
 The original pretrained weights converted into PyTorch format.
 
-test.py:  
+inference.py:  
 Modified version of the original example.py file. This file runs classification on the examples images.
 
 ## Dependencies
