@@ -1,0 +1,5 @@
+# These files can be downloaded from the official repository (https://github.com/rdroste/SonoNet_PyTorch) and hidden here.
+example_images/*.tiff
+sononet/SonoNet16.pth
+sononet/SonoNet32.pth
+sononet/SonoNet64.pth
