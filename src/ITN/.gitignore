@@ -1,0 +1,8 @@
+.idea/
+results/
+cnn_model/
+logs/
+*.pyc
+
+# These files can be downloaded from the official repository (https://github.com/yuanwei1989/plane-detection) and hidden here.
+data/Images/data1.nii.gz
