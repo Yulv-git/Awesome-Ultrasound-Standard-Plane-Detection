@@ -81,7 +81,7 @@ def rotVect(R):
     """
 
     M = numpy.dot(R,R.T) - numpy.eye(3)
-    if (numpy.trace(M)>1e-20): # TODO: do we have numeric precision less than 1e-12?
+    if (numpy.trace(M)>1e-20): # do we have numeric precision less than 1e-12?
         R=getClosestRotMat(R)
 
     c = (numpy.trace(R)-1.0)/2.0
@@ -99,7 +99,7 @@ def rotVect(R):
         Sr = fact * ( R - R.T)
         r = numpy.array([Sr[2,1], Sr[0,2], Sr[1,0]]).T;
     elif abs(theta-math.pi)<EPS:
-        print 'attention r'    # TODO: ? a remplir
+        print 'attention r'    # a remplir ?
     else:
         fact = 0.5 * theta / numpy.sin(theta)
         Sr = fact * (R-R.T)

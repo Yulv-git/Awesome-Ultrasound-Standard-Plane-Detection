@@ -64,17 +64,12 @@ References
 (1) Defining a mean on Lie group.
     Nina Miolane. Medical Imaging. 2013. <hal-00938320>
 """
-
-
 import numpy
 import math
 
-EPS = 1e-5
-
-
-#### TODO
 from srmg.common.util import *
 
+EPS = 1e-5
 
 
 def sigma2(m,tabr,tabw):
