@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-19 17:00:40
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/plane.py
+LastEditTime: 2022-03-23 00:42:49
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/network.py
 Description: CNN model architecture.
 Init from https://github.com/yuanwei1989/plane-detection
 '''
@@ -44,7 +44,6 @@ def conv_act_layer(layer_name, input_tensor, input_dim, output_dim,
                     conv_padding='SAME',
                     act=tf.nn.relu):
     """A convolutional layer + an activation layer.
-
     Args:
       layer_name: scope name for the layer
       input_tensor: an input tensor with the dimensions (N_examples, width, height, channel).
@@ -54,10 +53,8 @@ def conv_act_layer(layer_name, input_tensor, input_dim, output_dim,
       conv_strides: stride for the convolution
       conv_padding: padding for the convolution
       act: activation layer used
-
     Returns:
       tensor of shape (N_examples, width, height, channel)
-
     """
     with tf.name_scope(layer_name):
         with tf.name_scope('weights'):
@@ -83,17 +80,14 @@ def max_pool_layer(layer_name,
                    pool_strides=[1, 2, 2, 1],
                    pool_padding='SAME'):
     """max_pooling layer.
-
     Args:
       layer_name: scope name for the layer
       input_tensor: an input tensor with the dimensions (N_examples, width, height, channel).
       pool_kernel: size of pooling kernel
       pool_strides: stride for the pooling
       pool_padding: padding for the 3D pooling
-
     Returns:
       tensor of shape (N_examples, width, height, channel)
-
     """
     with tf.name_scope(layer_name):
         pool = tf.nn.max_pool(value=input_tensor,
@@ -107,17 +101,14 @@ def max_pool_layer(layer_name,
 
 def fc_act_layer(layer_name, input_tensor, input_dim, output_dim, act=tf.nn.relu):
     """A fully connected layer + an activation layer.
-
     Args:
       layer_name: scope name for the layer
       input_tensor: an input tensor with the dimensions (N_examples, input_dim)
       input_dim: number of input neurons
       output_dim: number of output neurons
       act: activation layer used
-
     Returns:
       tensor of shape (N_examples, output_dim)
-
     """
     with tf.name_scope(layer_name):
         with tf.name_scope('weights'):
@@ -137,7 +128,6 @@ def fc_act_layer(layer_name, input_tensor, input_dim, output_dim, act=tf.nn.relu
 
 def cnn(x, input_plane, num_output_tc, num_output_tr, num_output_rc, num_output_rr):
     """Network for combined classification and regression.
-
     Args:
       x: an input tensor with the dimensions (N_examples, width, height, channel).
       input_plane: number of input planes (1 or 3)
@@ -145,7 +135,6 @@ def cnn(x, input_plane, num_output_tc, num_output_tr, num_output_rc, num_output_
       num_output_tr: Dimensions of translation regression output (3 neurons)
       num_output_rc: Dimensions of rotation classification output (6 neurons)
       num_output_rr: Dimensions of rotation regression output. (4 neurons)
-
     Returns:
       ytc: translation classification output [N_examples, num_output_tc].
       ytr: translation regression output [N_examples, num_output_tr].
@@ -234,7 +223,6 @@ def cnn(x, input_plane, num_output_tc, num_output_tr, num_output_rc, num_output_
     pre_fc_dim = pool5.get_shape().as_list()[1:]
     fc_input_dim = pre_fc_dim[0] * pre_fc_dim[1] * pre_fc_dim[2]
     pool5_flat = tf.reshape(pool5, [-1, fc_input_dim])
-
 
     ####### Task-specific Layers #######
 

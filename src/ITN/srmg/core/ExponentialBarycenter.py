@@ -1,14 +1,22 @@
-# -*- coding: utf-8 -*-
-# ExponentialBarycenter.py
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-19 10:33:38
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 01:00:36
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/srmg/core/ExponentialBarycenter.py
+Description: Modify here please
+Init from https://github.com/yuanwei1989/plane-detection Author: Yuanwei Li (3 Oct 2018)
 
 # Copyright (c) 2006-2017, Nina Milone, Bishesh Kanal, Benjamin Hou
 # Copyright (c) 2006-2017, Imperial College of Science, Technology and Medicine 
 # Produced at Biomedical Image Analysis Group
 # All rights reserved.
-#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-#
 # * Redistributions of source code must retain the above copyright
 #   notice, this list of conditions and the following disclaimer.
 # * Redistributions in binary form must reproduce the above copyright
@@ -17,7 +25,6 @@
 # * Neither the name of the copyright holders nor the names of any
 #   contributors may be used to endorse or promote products derived
 #   from this software without specific prior written permission.
-#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -30,40 +37,29 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""
 Statistics on Riemannian Manifolds and Groups
 ---------------------------------------------
-
 This is a set of codes to compare the computing of the different types of means
 on Lie groups. These codes can be used to reproduce the experiments illustrated in the
 video developed for the MICCAI Educational challenge 2014, available at:
 url of the video.
-
 :Authors:
     `Nina Miolane <website>`
     `Bishesh Khanal <website>`
-
 :Organization:
     Asclepios Team, INRIA Sophia Antipolis.
-
 :Version: 
     2017.07.05
-
-
 Requirements
 ------------
 * `Numpy 1.11 <http://www.numpy.org>`_
-
-
 Notes
 -----
-
-
 References
 ----------
 (1) Defining a mean on Lie group.
     Nina Miolane. Medical Imaging. 2013. <hal-00938320>
-"""
+'''
 import numpy
 import math
 
@@ -87,7 +83,7 @@ def sigma2(m,tabr,tabw):
     siz = tabr.shape[0]
 
     if siz < 2:
-        print 'Error: Calculating sigma requires at least 2 points'
+        print('Error: Calculating sigma requires at least 2 points')
 
     s=0;
 
@@ -95,7 +91,6 @@ def sigma2(m,tabr,tabw):
         s = s + tabw[i]*numpy.linalg.norm(logRotL(m,tabr[i,:]))**2;
 
     return s
-
 
 
 def expRotL(r,a):
@@ -106,7 +101,6 @@ def expRotL(r,a):
     Inputs description:
     Outputs description:
     end:  TODO
-
     Group exponential and logarithm from any point f (first for SO(3))
     #Group geodesics are left- and right- invariant
     """
@@ -123,7 +117,6 @@ def logRotL(r,rr):
     Outputs description:
     end:  TODO
     """
-
     return numpy.dot(jRotL(r),rotVect(numpy.dot(rotMat(-r),rotMat(rr))));
 
 
@@ -135,14 +128,13 @@ def rotMean(tabr,tabw):
     Inputs description:
     Outputs description:
     end:  TODO
-
     Preliminaries: computation of the mean for rotations
     """
 
     siz = tabr.shape[0]
 
     if siz < 2:
-        print 'Error: Calculating mean requires at least 2 points'
+        print('Error: Calculating mean requires at least 2 points')
     
     m = tabr[0,:]
     #mbis=mt et m=m(t+1)
@@ -177,12 +169,10 @@ def matDeExp(v):
     Inputs description:
     Outputs description:
     end:  TODO
-    
     Group exponential barycenter on SE(3):
      - the previous mean for the rotation part,
      - closed form from article of Xavier Pennec "Exponential Barycenters of...",(2012)
     """
-
     v = regRot(v);
     r = v[0:3];
     theta = numpy.linalg.norm(r);
@@ -207,14 +197,13 @@ def expBar(tabf,tabw):
     Outputs description:
     end:  TODO
     """
-    
     # tabf: SE3 data points, Nx6 array
     # tabw: data point weights, Nx1 array
 
     siz = tabf.shape[0]
 
     if siz < 2:
-        print 'Error: Calculating mean requires at least 2 points'
+        print('Error: Calculating mean requires at least 2 points')
     
     tabr=tabf[:,0:3]
     tabt=tabf[:,3:6]

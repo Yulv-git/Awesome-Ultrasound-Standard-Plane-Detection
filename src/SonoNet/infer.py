@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-18 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-22 09:46:44
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/SonoNet/inference.py
+LastEditTime: 2022-03-22 20:27:51
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/SonoNet/infer.py
 Description: PyTorch implementation of SonoNet.
 Init from https://github.com/rdroste/SonoNet_PyTorch
 
@@ -17,8 +17,8 @@ Scan Planes in 2D Freehand Ultrasound", arXiv preprint:1612.05601 (2016)
 This repository is based on https://github.com/baumgach/SonoNet-weights
 which provides a theano+lasagne implementation.
 
-inference.py:   Modified version of the original example.py file.
-                This file runs classification on the examples images.
+infer.py:   Modified version of the original example.py file.
+            This file runs classification on the examples images.
 '''
 import argparse
 import glob

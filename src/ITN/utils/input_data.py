@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-19 17:00:40
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/plane.py
+LastEditTime: 2022-03-23 00:36:43
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/input_data.py
 Description: Functions for reading input data (image (nifti), landmarks (txt) and standard planes).
 Init from https://github.com/yuanwei1989/plane-detection
 '''
@@ -20,13 +20,7 @@ from utils import plane
 
 
 class DataSet(object):
-    def __init__(self,
-                 names,
-                 images,
-                 landmarks,
-                 trans_vecs,
-                 quats,
-                 pix_dim):
+    def __init__(self, names, images, landmarks, trans_vecs, quats, pix_dim):
         self.num_examples = len(images)
         self.names = names
         self.images = images
@@ -79,11 +73,7 @@ def extract_label(filename):
     return labels
 
 
-def extract_all_image_and_label(file_list,
-                                data_dir,
-                                label_dir,
-                                landmark_count,
-                                plane_name):
+def extract_all_image_and_label(file_list, data_dir, label_dir, landmark_count, plane_name):
     """Load the input images, landmarks and the standard planes.
     Args:
       file_list: txt file containing list of filenames of images
@@ -124,12 +114,7 @@ def extract_all_image_and_label(file_list,
     return filenames, images, landmarks, trans_vecs, quats, pix_dim
 
 
-def read_data_sets(data_dir,
-                   label_dir,
-                   train_list_file,
-                   test_list_file,
-                   landmark_count,
-                   plane_name):
+def read_data_sets(data_dir, label_dir, train_list_file, test_list_file, landmark_count, plane_name):
     """Load training and test dataset.
     Args:
       data_dir: Directory storing images.

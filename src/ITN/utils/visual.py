@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-19 16:53:45
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/inference.py
+LastEditTime: 2022-03-22 23:18:06
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/visual.py
 Description: Functions for visualisations.
 Init from https://github.com/yuanwei1989/plane-detection
 '''
@@ -21,8 +21,7 @@ from utils import geometry
 
 
 def plot_planes(save_dir, suffix, name, img_siz, trans_vec_final, quat_final, mesh_final, trans_vec_gt, quat_gt, mesh_gt):
-    """Plot GT and predicted planes
-    """
+    """Plot GT and predicted planes"""
     img_c = (img_siz-1)/2
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -58,9 +57,7 @@ def plot_planes(save_dir, suffix, name, img_siz, trans_vec_final, quat_final, me
 
 
 def plot_images(save_dir, suffix, name, slice_final, slice_gt):
-    """Plot GT and predicted plane images
-
-    """
+    """Plot GT and predicted plane images"""
     fig = plt.figure()
     plt.subplot(121)
     plt.imshow(slice_gt, cmap='gray')
@@ -76,8 +73,7 @@ def plot_images(save_dir, suffix, name, slice_final, slice_gt):
 
 
 def plot_planes_movie(save_dir, suffix, name, img_siz, max_test_steps, meshes, matrices, trans_vec_gt, quat_gt, mesh_gt):
-    """Save animation of planes over several test iterations
-    """
+    """Save animation of planes over several test iterations"""
     img_c = (img_siz-1)/2
     fig1 = plt.figure()
     ax1 = fig1.add_subplot(111, projection='3d')
@@ -125,8 +121,7 @@ def plot_planes_movie(save_dir, suffix, name, img_siz, max_test_steps, meshes, m
 
 
 def plot_images_movie(save_dir, suffix, name, max_test_steps, slices, slice_gt):
-    """Save animation of plane images over several test iterations
-    """
+    """Save animation of plane images over several test iterations"""
     fig2 = plt.figure()
     ax2_1 = fig2.add_subplot(121)
     ax2_2 = fig2.add_subplot(122)

@@ -1,14 +1,21 @@
-# -*- coding: utf-8 -*-
-# group.py
-
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-19 10:33:38
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 01:06:15
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/srmg/common/group.py
+Description: Modify here please
+Init from https://github.com/yuanwei1989/plane-detection Author: Yuanwei Li (3 Oct 2018)
 # Copyright (c) 2006-2017, Nina Milone, Bishesh Kanal, Benjamin Hou
 # Copyright (c) 2006-2017, Imperial College of Science, Technology and Medicine 
 # Produced at Biomedical Image Analysis Group
 # All rights reserved.
-#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-#
 # * Redistributions of source code must retain the above copyright
 #   notice, this list of conditions and the following disclaimer.
 # * Redistributions in binary form must reproduce the above copyright
@@ -17,7 +24,6 @@
 # * Neither the name of the copyright holders nor the names of any
 #   contributors may be used to endorse or promote products derived
 #   from this software without specific prior written permission.
-#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -30,50 +36,35 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""
 Statistics on Riemannian Manifolds and Groups
 ---------------------------------------------
-
 This is a set of codes to compare the computing of the different types of means
 on Lie groups. These codes can be used to reproduce the experiments illustrated in the
 video developed for the MICCAI Educational challenge 2014, available at:
 url of the video.
-
 :Authors:
     `Nina Miolane <website>`
     `Bishesh Khanal <website>`
-
 :Organization:
     Asclepios Team, INRIA Sophia Antipolis.
-
 :Version: 
     2017.07.05
-
-
 Requirements
 ------------
 * `Numpy 1.11 <http://www.numpy.org>`_
-
-
 Notes
 -----
-
-
 References
 ----------
 (1) Defining a mean on Lie group.
     Nina Miolane. Medical Imaging. 2013. <hal-00938320>
-"""
-
-
+'''
 import numpy
 import math
 
-EPS = 1e-5
-
-
 from srmg.common.util import *
 
+EPS = 1e-5
 
 
 def grpInv(f):
@@ -86,7 +77,6 @@ def grpInv(f):
     end:  TODO
     Group inversion for SE(3)
     """
-
     f = grpReg(f)
     r = f[0:3]
     t = f[3:6]
@@ -117,7 +107,6 @@ def grpCompose(f1,f2):
     Return:
         f:             ??????
     """
-
     R1 = getClosestRotMat(rotMat(f1[0:3])); t1 = f1[3:6];
     # R1 = rotMat(f1[0:3]); t1 = f1[3:6];
     R2 = getClosestRotMat(rotMat(f2[0:3])); t2 = f2[3:6];
@@ -127,8 +116,6 @@ def grpCompose(f1,f2):
     f[3:6] = numpy.dot(R1,t2) + t1;
 
     return f
-
-
 
 
 def grpReg(f):
@@ -141,7 +128,6 @@ def grpReg(f):
     Return:
         ff:            An element in SE(3) but with it's rotation normalized.
     """
-
     ff = numpy.zeros(6)
     ff[0:3]=regRot(f[0:3])
     ff[3:6]=f[3:6]
@@ -157,7 +143,6 @@ def grpExpId(v):
     Return:
         f:             An element in SE(3) but with it's rotation normalized.
     """
-
     v = grpReg(v)
     r = v[0:3]
     dt = v[3:6]
@@ -198,11 +183,6 @@ def grpExp(f,v):
     return ff
 
 
-
-
-
-
-
 def grpLogId(f):
     """ 
     NOTE
@@ -211,7 +191,6 @@ def grpLogId(f):
     Return:
         v:             ??????
     """
-
     f = grpReg(f)
     r = f[0:3]
     t = f[3:6]
@@ -233,7 +212,6 @@ def grpLogId(f):
     return v
 
 
-
 def grpLog(f,ff):
     """ 
     NOTE
@@ -243,7 +221,6 @@ def grpLog(f,ff):
     Return:
         v:             ??????
     """
-
     ff = grpReg(ff);
     f = grpReg(f);
     test1 = jL(f);

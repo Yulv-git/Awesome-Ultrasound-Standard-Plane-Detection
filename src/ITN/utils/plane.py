@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-19 17:00:40
+LastEditTime: 2022-03-23 00:32:15
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/plane.py
 Description: Functions for plane manipulations.
 Init from https://github.com/yuanwei1989/plane-detection
@@ -21,7 +21,6 @@ def fit_plane(pts):
     """Fit a plane to a set of 3D points.
     Args:
       pts: [point_count, 3]
-
     Returns:
       n: normal vector of plane [3]
       c: centroid of plane [3]

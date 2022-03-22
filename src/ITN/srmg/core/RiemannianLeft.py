@@ -1,14 +1,21 @@
-# -*- coding: utf-8 -*-
-# RiemannianLeft.py
-
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-19 10:33:38
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 00:56:03
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/srmg/core/RiemannianLeft.py
+Description: Modify here please
+Init from https://github.com/yuanwei1989/plane-detection Author: Yuanwei Li (3 Oct 2018)
 # Copyright (c) 2006-2017, Nina Milone, Bishesh Kanal, Benjamin Hou
 # Copyright (c) 2006-2017, Imperial College of Science, Technology and Medicine 
 # Produced at Biomedical Image Analysis Group
 # All rights reserved.
-#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-#
 # * Redistributions of source code must retain the above copyright
 #   notice, this list of conditions and the following disclaimer.
 # * Redistributions in binary form must reproduce the above copyright
@@ -17,7 +24,6 @@
 # * Neither the name of the copyright holders nor the names of any
 #   contributors may be used to endorse or promote products derived
 #   from this software without specific prior written permission.
-#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -30,42 +36,29 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""
 Statistics on Riemannian Manifolds and Groups
 ---------------------------------------------
-
 This is a set of codes to compare the computing of the different types of means
 on Lie groups. These codes can be used to reproduce the experiments illustrated in the
 video developed for the MICCAI Educational challenge 2014, available at:
 url of the video.
-
 :Authors:
     `Nina Miolane <website>`
     `Bishesh Khanal <website>`
-
 :Organization:
     Asclepios Team, INRIA Sophia Antipolis.
-
 :Version: 
     2017.07.05
-
-
 Requirements
 ------------
 * `Numpy 1.11 <http://www.numpy.org>`_
-
-
 Notes
 -----
-
-
 References
 ----------
 (1) Defining a mean on Lie group.
     Nina Miolane. Medical Imaging. 2013. <hal-00938320>
-"""
-
-
+'''
 import numpy
 import math
 
@@ -83,10 +76,8 @@ def riemExpL(a,f0,v):
     Inputs description:
     Outputs description:
     end:  TODO
-    
     Riemannian exponential and logarithm from any point f0 (for left- and right-invariant metric)
     """
-
     f = grpCompose(f0, riemExpIdL(a, numpy.linalg.lstsq(jL(f0),v)[0]))
     return f
 
@@ -99,10 +90,8 @@ def riemExpIdL(a,v):
     Inputs description:
     Outputs description:
     end:  TODO
-    
     Riemannian exponential and logarithm from Id (for left- and right-invariant metric)
     """
-
     v=grpReg(v);
     f = numpy.zeros(6)
     f[0:3] = v[0:3]
@@ -120,11 +109,10 @@ def sigma2L(a,m,tabf,tabw):
     Outputs description:
     end:  TODO
     """
-
     siz = tabf.shape[0]
 
     if siz < 2:
-        print 'Error: Calculating variance requires at least 2 points'
+        print('Error: Calculating variance requires at least 2 points')
         return 0
 
     s = 0
@@ -145,7 +133,6 @@ def riemLogL(a,f0,f):
     Return:
         v:             ?????
     """
-
     v=numpy.dot(jL(f0),riemLogIdL(a,grpCompose(grpInv(f0), f)))
     return v
 
@@ -159,13 +146,12 @@ def riemLogIdL(a,f):
     Return:
         v:             ?????
     """
-
     v = numpy.zeros(6)
     if (a != 0):
         v[0:3] = f[0:3]
         v[3:6] = (1.0/numpy.float(a))*f[3:6];
     else:
-        print 'ERROR: alpha = 0'
+        print('ERROR: alpha = 0')
 
     return v
 
@@ -197,7 +183,6 @@ def jL(f):
     Return:
         Jl:            ?????
     """
-
     #f = makeColVector(f,6); # unnecessary if 1D
     f = grpReg(f);
     Jl = numpy.zeros([6,6])
@@ -217,7 +202,6 @@ def normA2L(a,f,v):
     Return:
         n:             normalised vector
     """
-
     v=grpReg(v);
     n=numpy.dot(numpy.dot(v.T,qL(a,f)),v); 
 
@@ -235,11 +219,10 @@ def frechetL(a,tabf,tabw):
     Return:
         m:              The mean
     """
-
     siz = tabf.shape[0]
 
     if siz < 2:
-        print 'Error: Calculating mean requires at least 2 points'
+        print('Error: Calculating mean requires at least 2 points')
     
     m = tabf[0,:]
 

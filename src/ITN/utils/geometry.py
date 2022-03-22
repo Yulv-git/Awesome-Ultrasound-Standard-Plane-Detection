@@ -6,15 +6,11 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-19 17:00:40
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/plane.py
+LastEditTime: 2022-03-23 00:35:14
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/geometry.py
 Description: Functions for geometric manipulations on quaternions, Euler angles, rotation matrices, etc
    Part of the code is adapted from Christoph Gohlke's code (https://www.lfd.uci.edu/~gohlke/code/transformations.py.html).
 Init from https://github.com/yuanwei1989/plane-detection
-'''
-# -*- coding: utf-8 -*-
-# transformations.py
-
 # Copyright (c) 2006-2018, Christoph Gohlke
 # Copyright (c) 2006-2018, The Regents of the University of California
 # Produced at the Laboratory for Fluorescence Dynamics
@@ -43,6 +39,7 @@ Init from https://github.com/yuanwei1989/plane-detection
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+'''
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -70,8 +67,7 @@ _TUPLE2AXES = dict((v, k) for k, v in _AXES2TUPLE.items())
 
 
 def vector_norm(data, axis=None, out=None):
-    """Return length, i.e. Euclidean norm, of ndarray along axis.
-    """
+    """Return length, i.e. Euclidean norm, of ndarray along axis."""
     data = np.array(data, dtype=np.float64, copy=True)
     if out is None:
         if data.ndim == 1:
@@ -87,8 +83,7 @@ def vector_norm(data, axis=None, out=None):
 
 
 def unit_vector(data, axis=None, out=None):
-    """Return ndarray normalized by length, i.e. Euclidean norm, along axis.
-    """
+    """Return ndarray normalized by length, i.e. Euclidean norm, along axis."""
     if out is None:
         data = np.array(data, dtype=np.float64, copy=True)
         if data.ndim == 1:
@@ -108,8 +103,7 @@ def unit_vector(data, axis=None, out=None):
 
 
 def quaternion_about_axis(angle, axis):
-    """Return quaternion for rotation about axis.
-    """
+    """Return quaternion for rotation about axis."""
     q = np.array([0.0, axis[0], axis[1], axis[2]])
     qlen = vector_norm(q)
     if qlen > _EPS:
@@ -119,8 +113,7 @@ def quaternion_about_axis(angle, axis):
 
 
 def quaternion_matrix(quaternion):
-    """Return homogeneous rotation matrix from quaternion.
-    """
+    """Return homogeneous rotation matrix from quaternion."""
     q = np.array(quaternion, dtype=np.float64, copy=True)
     n = np.dot(q, q)
     if n < _EPS:
@@ -187,8 +180,7 @@ def quaternion_from_matrix(matrix, isprecise=False):
 
 
 def euler_from_quaternion(quaternion, axes='sxyz'):
-    """Return Euler angles from quaternion for specified axis sequence.
-    """
+    """Return Euler angles from quaternion for specified axis sequence."""
     return euler_from_matrix(quaternion_matrix(quaternion), axes)
 
 

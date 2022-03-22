@@ -4,9 +4,10 @@
  * @Date: 2022-03-18 23:10:52
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-19 16:50:45
+ * @LastEditTime: 2022-03-23 00:47:11
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/README.md
  * @Description: Modify here please
+ * Init from https://github.com/yuanwei1989/plane-detection
 -->
 
 # Standard Plane Localisation in 3D Ultrasound
@@ -19,7 +20,7 @@ Tensorflow implementation of the MICCAI 2018 paper [Standard Plane Detection in 
 
 ## Prerequisites
 
-- Python 2.7
+- Python 3
 - [Tensorflow 1.8.0](https://github.com/tensorflow/tensorflow/tree/r1.8)
 - [SciPy](http://www.scipy.org/install.html)
 - (Optional) [NiBabel](http://nipy.org/nibabel/installation.html#installation) (for reading NIfTI input)
@@ -32,11 +33,17 @@ Tensorflow implementation of the MICCAI 2018 paper [Standard Plane Detection in 
 
 To train a CNN model:
 
-    python train.py
+``` bash
+cd src/ITN
+python train.py
+```
 
 To test with an existing CNN model:
 
-    python infer.py
+``` bash
+cd src/ITN
+python infer.py
+```
 
 ## Data
 

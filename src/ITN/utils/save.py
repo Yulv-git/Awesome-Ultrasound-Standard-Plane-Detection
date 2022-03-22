@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-19 16:53:45
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/inference.py
+LastEditTime: 2022-03-22 23:12:41
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/save.py
 Description: Functions for writing results.
 Init from https://github.com/yuanwei1989/plane-detection
 '''
@@ -76,7 +76,6 @@ def save_planes_nifti(save_dir, suffix, name, slice_final, slice_gt):
       slice_final: Predicted plane image.
       slice_gt: GT plane image.
     """
-    ##
     save_path = os.path.join(save_dir, 'GT', suffix)
     if not os.path.isdir(save_path):
         os.makedirs(save_path)

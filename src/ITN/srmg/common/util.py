@@ -1,14 +1,21 @@
-# -*- coding: utf-8 -*-
-# util.py
-
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-19 10:33:38
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 01:03:25
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/srmg/common/util.py
+Description: Modify here please
+Init from https://github.com/yuanwei1989/plane-detection Author: Yuanwei Li (3 Oct 2018)
 # Copyright (c) 2006-2017, Nina Milone, Bishesh Kanal, Benjamin Hou
 # Copyright (c) 2006-2017, Imperial College of Science, Technology and Medicine 
 # Produced at Biomedical Image Analysis Group
 # All rights reserved.
-#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-#
 # * Redistributions of source code must retain the above copyright
 #   notice, this list of conditions and the following disclaimer.
 # * Redistributions in binary form must reproduce the above copyright
@@ -17,7 +24,6 @@
 # * Neither the name of the copyright holders nor the names of any
 #   contributors may be used to endorse or promote products derived
 #   from this software without specific prior written permission.
-#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -29,41 +35,29 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-
-"""
 Statistics on Riemannian Manifolds and Groups
 ---------------------------------------------
-
 This is a set of codes to compare the computing of the different types of means
 on Lie groups. These codes can be used to reproduce the experiments illustrated in the
 video developed for the MICCAI Educational challenge 2014, available at:
 url of the video.
-
 :Authors:
     `Nina Miolane <website>`
     `Bishesh Khanal <website>`
-
 :Organization:
     Asclepios Team, INRIA Sophia Antipolis.
-
 :Version: 
     2017.07.05
-
-
 Requirements
 ------------
 * `Numpy 1.11 <http://www.numpy.org>`_
-
-
 Notes
 -----
-
-
 References
 ----------
 (1) Defining a mean on Lie group.
     Nina Miolane. Medical Imaging. 2013. <hal-00938320>
-"""
+'''
 import numpy
 import math
 
@@ -99,7 +93,7 @@ def rotVect(R):
         Sr = fact * ( R - R.T)
         r = numpy.array([Sr[2,1], Sr[0,2], Sr[1,0]]).T;
     elif abs(theta-math.pi)<EPS:
-        print 'attention r'    # a remplir ?
+        print('attention r')    # a remplir ?
     else:
         fact = 0.5 * theta / numpy.sin(theta)
         Sr = fact * (R-R.T)
@@ -117,7 +111,6 @@ def getClosestRotMat(M):
     Return:
         R:             rotation matrix
     """
-
     u , s , v = numpy.linalg.svd(M)
     R = numpy.dot(u,v)
     s = numpy.eye(3) * s
@@ -139,7 +132,6 @@ def rotMat(r):
     Return:
         R:             rotation matrix
     """
-
     r=regRot(r)
     theta=numpy.linalg.norm(r)
     Sr=skew(r)
@@ -161,7 +153,6 @@ def jRotL(r):
     Return:
         Jl:            ?????
     """
-
     r=regRot(r)
     theta=numpy.linalg.norm(r)
     if theta<EPS:
@@ -188,7 +179,6 @@ def jRotR(r):
     Return:
         Jl:            ?????
     """
-
     r=regRot(r)
     theta=numpy.linalg.norm(r)
     if theta<EPS:
@@ -216,7 +206,6 @@ def skew(r):
     Return:
         S:             Skew symmetric matrix
     """
-
     S = numpy.array( [   [0,   -r[2],  r[1]  ],
                         [   r[2],     0, -r[0]  ],
                         [  -r[1],  r[0],    0]  ])
@@ -232,7 +221,6 @@ def regRot(r):
     Return:
         u:             a normalized rotation vector
     """
-
     phi = numpy.linalg.norm(r)
     u = r
     if (phi != 0):
@@ -249,8 +237,7 @@ def unifRnd():
         None
     Return:
         f:             a random normalized SE3 vector
-    """    
-
+    """
     f = numpy.zeros(6)
     f[0:3] = regRot( numpy.random.rand(3) * 2 - 1 )     # rotation
     f[3:6] = numpy.random.rand(3) * 2 - 1               # translation

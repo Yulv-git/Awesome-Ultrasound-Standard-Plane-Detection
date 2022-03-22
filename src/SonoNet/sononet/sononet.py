@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-18 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-22 10:30:11
+LastEditTime: 2022-03-22 20:27:23
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/SonoNet/sononet/sononet.py
 Description: PyTorch implementation of SonoNet.
 Init from https://github.com/rdroste/SonoNet_PyTorch
@@ -56,7 +56,7 @@ class SonoNet(nn.Module):
         >>> encoder = sononet.SonoNet(config='SN64', features_only=True).eval().cuda()
         >>> features = encoder(x)
     Note:
-        Inputs into the forward methods must be preprocessed as shown inference.py
+        Inputs into the forward methods must be preprocessed as shown infer.py
     """
 
     feature_cfg_dict = {

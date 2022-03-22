@@ -1,6 +1,15 @@
-# -*- coding: utf-8 -*-
-# RiemannianRight.py
-
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-19 10:33:38
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 00:52:55
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/srmg/core/RiemannianRight.py
+Description: Modify here please
+Init from https://github.com/yuanwei1989/plane-detection Author: Yuanwei Li (3 Oct 2018)
 # Copyright (c) 2006-2017, Nina Milone, Bishesh Kanal, Benjamin Hou
 # Copyright (c) 2006-2017, Imperial College of Science, Technology and Medicine 
 # Produced at Biomedical Image Analysis Group
@@ -30,42 +39,28 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""
 Statistics on Riemannian Manifolds and Groups
 ---------------------------------------------
 
-This is a set of codes to compare the computing of the different types of means
-on Lie groups. These codes can be used to reproduce the experiments illustrated in the
-video developed for the MICCAI Educational challenge 2014, available at:
-url of the video.
-
+This is a set of codes to compare the computing of the different types of means on Lie groups.
+These codes can be used to reproduce the experiments illustrated in the video developed for the
+MICCAI Educational challenge 2014, available at: url of the video.
 :Authors:
     `Nina Miolane <website>`
     `Bishesh Khanal <website>`
-
 :Organization:
     Asclepios Team, INRIA Sophia Antipolis.
-
 :Version: 
     2017.07.05
-
-
 Requirements
 ------------
 * `Numpy 1.11 <http://www.numpy.org>`_
-
-
 Notes
 -----
-
-
-References
 ----------
 (1) Defining a mean on Lie group.
     Nina Miolane. Medical Imaging. 2013. <hal-00938320>
-"""
-
-
+'''
 import numpy
 import math
 
@@ -86,7 +81,6 @@ def riemExpR(a,f0,v):
     
     Riemannian exponential and logarithm from any point f0 (for left- and right-invariant metric)
     """
-
     f = grpCompose((riemExpIdR(a, numpy.linalg.lstsq(jR(f0),v)[0])), f0)
     return f
 
@@ -99,10 +93,8 @@ def riemExpIdR(a,v):
     Inputs description:
     Outputs description:
     end:  TODO
-    
     Riemannian exponential and logarithm from Id (for left- and right-invariant metric)
     """
-
     v=grpReg(-v);
     f = numpy.zeros(6)
     f[0:3] = v[0:3]
@@ -120,11 +112,10 @@ def sigma2R(a,m,tabf,tabw):
     Outputs description:
     end:  TODO
     """
-
     siz = tabf.shape[0]
 
     if siz < 2:
-        print 'Error: Calculating variance requires at least 2 points'
+        print('Error: Calculating variance requires at least 2 points')
         return 0
 
     s = 0
@@ -145,7 +136,6 @@ def riemLogR(a,f0,f):
     Return:
         v:             ?????
     """
-
     v=numpy.dot(jR(f0),riemLogIdR(a,grpCompose(f,grpInv(f0))))
     return v
 
@@ -159,7 +149,6 @@ def riemLogIdR(a,f):
     Return:
         v:             ?????
     """
-
     v = numpy.zeros(6)
     v[0:3] = f[0:3]
     v[3:6] = numpy.dot(rotMat(-f[0:3]),f[3:6]);
@@ -194,7 +183,6 @@ def jR(f):
     Return:
         Jl:            ?????
     """
-
     #f = makeColVector(f,6); # unnecessary if 1D
     f = grpReg(f);
     Jr = numpy.zeros([6,6])
@@ -215,7 +203,6 @@ def normA2R(a,f,v):
     Return:
         n:             normalised vector
     """
-
     v=grpReg(v);
     n=numpy.dot(numpy.dot(v.T,qR(a,f)),v); 
 
@@ -235,17 +222,16 @@ def frechetR(a,tabf,tabw):
     Return:
         m:              The mean
     """
-
     siz = tabf.shape[0]
 
     if siz < 2:
-        print 'Error: Calculating mean requires at least 2 points'
+        print('Error: Calculating mean requires at least 2 points')
     
     m = tabf[0,:]
 
     # Iteration 0
     mbis=m;
-    print 'mbisR=' + str(mbis)
+    print('mbisR=' + str(mbis))
     aux=numpy.zeros(6);
     for i in range (0,siz):
         aux=aux+tabw[i]*riemLogR(a,mbis,tabf[i,:]);
@@ -254,7 +240,7 @@ def frechetR(a,tabf,tabw):
     # Iteration 1 until converges
     while  (normA2R(a,mbis,riemLogR(a,mbis,m))>EPS*sigma2R(a,mbis,tabf,tabw)):
         mbis=m;
-        print 'mbisR=' + str(mbis)
+        print('mbisR=' + str(mbis))
         aux=numpy.zeros(6);
         for i in range (0,siz):
             aux=aux+tabw[i]*riemLogR(a,mbis,tabf[i,:]);
