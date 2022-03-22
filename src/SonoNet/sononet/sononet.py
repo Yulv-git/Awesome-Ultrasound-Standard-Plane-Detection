@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-18 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-18 22:39:09
+LastEditTime: 2022-03-22 10:30:11
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/SonoNet/sononet/sononet.py
 Description: PyTorch implementation of SonoNet.
 Init from https://github.com/rdroste/SonoNet_PyTorch
@@ -26,6 +26,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch.autograd import Variable
+from ipdb import set_trace
 
 
 class SonoNet(nn.Module):
@@ -41,8 +43,7 @@ class SonoNet(nn.Module):
             0: Standard random weight initialization.
             str: Pass your own weight file.
             Default is True.
-        features_only (bool, optional): If True, only feature layers are
-            initialized and the forward method returns the features.
+        features_only (bool, optional): If True, only feature layers are initialized and the forward method returns the features.
             Default is False.
     Attributes:
         feature_channels (int): Number of feature channels.
@@ -51,6 +52,7 @@ class SonoNet(nn.Module):
     Examples::
         >>> net = sononet.SonoNet(config='SN64').eval().cuda()
         >>> outputs = net(x)
+
         >>> encoder = sononet.SonoNet(config='SN64', features_only=True).eval().cuda()
         >>> features = encoder(x)
     Note:
@@ -58,12 +60,9 @@ class SonoNet(nn.Module):
     """
 
     feature_cfg_dict = {
-        'SN16': [16, 16, 'M', 32, 32, 'M', 64, 64, 64, 'M',
-                 128, 128, 128, 'M', 128, 128, 128],
-        'SN32': [32, 32, 'M', 64, 64, 'M', 128, 128, 128, 'M',
-                 256, 256, 256, 'M', 256, 256, 256],
-        'SN64': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M',
-                 512, 512, 512, 'M', 512, 512, 512]
+        'SN16': [16, 16, 'M', 32, 32, 'M', 64, 64, 64, 'M', 128, 128, 128, 'M', 128, 128, 128],
+        'SN32': [32, 32, 'M', 64, 64, 'M', 128, 128, 128, 'M', 256, 256, 256, 'M', 256, 256, 256],
+        'SN64': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512]
     }
 
     def __init__(self, config=None, num_labels=14, weights=True, features_only=False, in_channels=1):
@@ -77,50 +76,18 @@ class SonoNet(nn.Module):
         if not features_only:
             self.adaption_channels = self.feature_channels // 2
             self.num_labels = num_labels
-            self.adaption = self._make_adaption_layer(
-                self.feature_channels, self.adaption_channels, self.num_labels)
+            self.adaption = self._make_adaption_layer(self.feature_channels, self.adaption_channels, self.num_labels)
         self.set_weights(weights)
 
     def forward(self, x):
         x = self.features(x)
+
         if not self.features_only:
             x = self.adaption(x)
             x = F.avg_pool2d(x, x.size()[2:]).view(x.size(0), -1)
             x = F.softmax(x, dim=1)
+
         return x
-
-    @staticmethod
-    def _make_adaption_layer(feature_channels, adaption_channels, num_labels):
-        return nn.Sequential(
-            nn.Conv2d(feature_channels, adaption_channels, 1, bias=False),
-            nn.BatchNorm2d(adaption_channels),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(adaption_channels, num_labels, 1, bias=False),
-            nn.BatchNorm2d(num_labels),
-        )
-
-    def set_weights(self, weights):
-        if weights is not None:
-            if weights:
-                if not isinstance(weights, str):
-                    weights = os.path.join(os.path.dirname(__file__), 'SonoNet{}.pth'.format(self.config[2:]))
-                self.load_weights(weights)
-            else:
-                self.apply(self._initialize_weights)
-
-    @staticmethod
-    def _initialize_weights(m):
-        if isinstance(m, nn.Conv2d):
-            n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-            m.weight.data.normal_(0, math.sqrt(2. / n))
-            if m.bias is not None:
-                m.bias.data.zero_()
-        elif isinstance(m, nn.BatchNorm2d):
-            m.weight.data.fill_(1)
-            m.bias.data.zero_()
-        elif isinstance(m, nn.Linear):
-            m.weight.data.normal_(0, 0.01)
-            m.bias.data.zero_()
 
     @staticmethod
     def _conv_layer(in_channels, out_channels):
@@ -143,6 +110,30 @@ class SonoNet(nn.Module):
                 in_channels = v
         layers.append(nn.Sequential(*conv_layers))
         return nn.Sequential(*layers)
+
+    @staticmethod
+    def _make_adaption_layer(feature_channels, adaption_channels, num_labels):
+        return nn.Sequential(
+            nn.Conv2d(feature_channels, adaption_channels, 1, bias=False),
+            nn.BatchNorm2d(adaption_channels),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(adaption_channels, num_labels, 1, bias=False),
+            nn.BatchNorm2d(num_labels),
+        )
+
+    @staticmethod
+    def _initialize_weights(m):
+        if isinstance(m, nn.Conv2d):
+            n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+            m.weight.data.normal_(0, math.sqrt(2. / n))
+            if m.bias is not None:
+                m.bias.data.zero_()
+        elif isinstance(m, nn.BatchNorm2d):
+            m.weight.data.fill_(1)
+            m.bias.data.zero_()
+        elif isinstance(m, nn.Linear):
+            m.weight.data.normal_(0, 0.01)
+            m.bias.data.zero_()
 
     @staticmethod
     def process_lasagne_weights(weights):
@@ -188,3 +179,26 @@ class SonoNet(nn.Module):
         #         expand = state[key].expand(size)
         #         state[key] = expand * state[key].norm() / expand.norm()
         self.load_state_dict(state, strict=True)
+
+    def set_weights(self, weights):
+        if weights is not None:
+            if weights:
+                if not isinstance(weights, str):
+                    weights = os.path.join(os.path.dirname(__file__), 'SonoNet{}.pth'.format(self.config[2:]))
+                self.load_weights(weights)
+            else:
+                self.apply(self._initialize_weights)
+
+
+if __name__ == '__main__':
+    label_names=['3VV', '4CH', 'Abdominal', 'Background', 'Brain (Cb.)', 'Brain (Tv.)', 'Femur',
+                'Kidneys', 'Lips', 'LVOT', 'Profile', 'RVOT', 'Spine (cor.)', 'Spine (sag.)']
+    image = np.random.randint(0, 255, (1,1,288,224), dtype=np.int32)
+    image = np.float32(image)
+    image = np.array(255.0 * np.divide(image - 50.57153, 51.57832), dtype=np.float32)
+    x = Variable(torch.from_numpy(image).cuda())
+
+    net = SonoNet(config='SN64').eval().cuda()
+    outputs = net(x)
+    confidence, prediction = torch.max(outputs.data, 1)
+    print(" - {} (conf: {:.2f})".format(label_names[prediction[0]], confidence[0]))

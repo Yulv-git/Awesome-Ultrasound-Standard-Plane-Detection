@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-18 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-18 22:30:02
+LastEditTime: 2022-03-22 09:46:44
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/SonoNet/inference.py
 Description: PyTorch implementation of SonoNet.
 Init from https://github.com/rdroste/SonoNet_PyTorch
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     parse.add_argument('--GPU_NR', default=0, help="Choose the device number of your GPU")
     parse.add_argument('--weights', default=True, help="(bool, 0 or string): Select weight initialization.")
     parse.add_argument('--crop_range', default=[(115, 734), (81, 874)], help="[(top, bottom), (left, right)]")
-    parse.add_argument('--input_size', default=[224, 288])
+    parse.add_argument('--input_size', default=[224, 288], help="[H, W]")
     parse.add_argument('--image_path', default='./example_images/*.tiff')
     parse.add_argument('--label_names', default=['3VV',
                                                 '4CH',
@@ -109,7 +109,7 @@ if __name__ == '__main__':
                                                 'Profile',
                                                 'RVOT',
                                                 'Spine (cor.)',
-                                                'Spine (sag.) '])
+                                                'Spine (sag.)'])
     args = parse.parse_args()
 
     main(args)

@@ -202,7 +202,7 @@ def train(arguments):
             stats = model.get_classification_stats()
             error_logger.update({**errors, **stats}, split=split)
 
-            # HACK save validation error
+            # save validation error
             if split == 'validation':
                 valid_err = errors['CE']
 
