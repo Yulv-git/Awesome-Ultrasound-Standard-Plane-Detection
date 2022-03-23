@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 22:17:15
+LastEditTime: 2022-03-23 22:22:21
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/train_classifaction.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
@@ -238,10 +238,8 @@ def train(arguments):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='CNN Classification Training Function')
-    parser.add_argument('-c', '--config', default='./configs/config_sononet_8.json',
-                        help='training config file')
-    parser.add_argument('-d', '--debug',
-                        help='returns number of parameters and bp/fp runtime', action='store_true')
+    parser.add_argument('-c', '--config', default='./configs/config_sononet_8.json', help='training config file')
+    parser.add_argument('-d', '--debug', help='returns number of parameters and bp/fp runtime', action='store_true')
     args = parser.parse_args()
 
     train(args)

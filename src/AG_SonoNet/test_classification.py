@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 20:16:25
+LastEditTime: 2022-03-23 22:22:49
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/test_classification.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
@@ -175,9 +175,9 @@ def test(arguments):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='CNN Seg Training Function')
-    parser.add_argument('-c', '--config',  help='training config file', required=True)
-    parser.add_argument('-d', '--debug',   help='returns number of parameters and bp/fp runtime', action='store_true')
-    parser.add_argument('-t', '--time',   help='returns number of parameters and bp/fp runtime', action='store_true')
+    parser.add_argument('-c', '--config', default='./configs/config_sononet_8.json', help='training config file')
+    parser.add_argument('-d', '--debug', help='returns number of parameters and bp/fp runtime', action='store_true')
+    parser.add_argument('-t', '--time', help='returns number of parameters and bp/fp runtime', action='store_true')
     args = parser.parse_args()
 
     test(args)
