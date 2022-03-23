@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-22 23:12:41
+LastEditTime: 2022-03-23 12:43:29
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/save.py
 Description: Functions for writing results.
 Init from https://github.com/yuanwei1989/plane-detection
@@ -30,7 +30,7 @@ def save_err(save_dir, suffix, names, dist_err, angle_err, mse, psnr, ssim):
         os.makedirs(save_dir)
     with open(os.path.join(save_dir, 'eval_' + suffix + '.txt'), 'w') as f:
         f.write("dist_err (mm)\tangle_err (deg)\tmse\tpsnr\tssim\n")
-        for i in xrange(len(names)):
+        for i in range(len(names)):
             f.write("{} {:.10f} {:.10f} {:.10f} {:.10f} {:.10f}\n".format(names[i],
                                                                           dist_err[i],
                                                                           angle_err[i],
@@ -61,7 +61,7 @@ def save_planes_tform(save_dir, suffix, names, trans_vecs, quats):
     save_dir = os.path.join(save_dir, suffix)
     if not os.path.isdir(save_dir):
         os.makedirs(save_dir)
-    for i in xrange(len(names)):
+    for i in range(len(names)):
         mat = geometry.quaternion_matrix(quats[i, :])
         mat[:3, 3] = trans_vecs[i, :]
         np.savetxt(os.path.join(save_dir, names[i] + '_mat.txt'), mat)

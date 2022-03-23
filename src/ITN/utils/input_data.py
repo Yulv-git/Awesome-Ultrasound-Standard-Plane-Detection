@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 00:36:43
+LastEditTime: 2022-03-23 12:06:39
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/input_data.py
 Description: Functions for reading input data (image (nifti), landmarks (txt) and standard planes).
 Init from https://github.com/yuanwei1989/plane-detection
@@ -15,6 +15,7 @@ import numpy as np
 import os
 import nibabel as nib
 from tensorflow.contrib.learn.python.learn.datasets import base
+from ipdb import set_trace
 
 from utils import plane
 
@@ -68,7 +69,10 @@ def extract_label(filename):
     with open(filename) as f:
         labels = np.empty([0, 3], dtype=np.float64)
         for line in f:
-            labels = np.vstack((labels, map(float, line.split())))
+            # labels = np.vstack((labels,
+            #                     map(float, line.split())))  # ValueError: all the input array dimensions for the concatenation axis must match exactly, 
+            #                                                 # but along dimension 1, the array at index 0 has size 3 and the array at index 1 has size 1
+            labels = np.vstack((labels, list(map(float, line.split()))))
 
     return labels
 

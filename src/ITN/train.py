@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 00:57:04
+LastEditTime: 2022-03-23 13:57:05
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/train.py
 Description: Modify here please
 Init from https://github.com/yuanwei1989/plane-detection Author: Yuanwei Li (3 Oct 2018)
@@ -70,7 +70,7 @@ def get_train_pairs(args, data):
     # Random uniform sampling of Euler angles with restricted range
     euler_angles = geometry.sample_euler_angles_fix_range(batch_size, max_euler[0], max_euler[1], max_euler[2])
 
-    for i in xrange(batch_size):
+    for i in range(batch_size):
         image = np.squeeze(images[ind[i]])
         img_siz = np.array(image.shape)
 
@@ -282,7 +282,7 @@ def main(args):
         ite_start = 0
         ite_end = args.max_steps
 
-    for i in xrange(ite_start, ite_end):
+    for i in range(ite_start, ite_end):
         slices_train, actions_tran_train, tran_diff_train, actions_rot_train, rot_diff_train = get_train_pairs(args, data.train)
         if i % 10 == 0:
             # Record summaries and test-set loss
@@ -355,8 +355,8 @@ if __name__ == '__main__':
     # Training parameters
     parse.add_argument('--resume', default=False, help="Whether to train from scratch or resume previous training")
     parse.add_argument('--learning_rate', default=0.001, help="")
-    parse.add_argument('--max_steps', default=100000, help="Number of steps to train")
-    parse.add_argument('--save_interval', default=25000, help="Number of steps in between saving each model")
+    parse.add_argument('--max_steps', type=int, default=100000, help="Number of steps to train")
+    parse.add_argument('--save_interval', type=int, default=25000, help="Number of steps in between saving each model")
     parse.add_argument('--batch_size', default=64, help="Training batch size")
     parse.add_argument('--dropout', default=0.5, help="")
     # Parameters for sampling training plane

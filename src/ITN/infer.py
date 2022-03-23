@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-18 23:10:53
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-22 23:10:36
+LastEditTime: 2022-03-23 14:22:28
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/infer.py
 Description: Modify here please
 Init from https://github.com/yuanwei1989/plane-detection Author: Yuanwei Li (3 Oct 2018)
@@ -49,7 +49,7 @@ def evaluate(data, config, suffix, sess, x, action_prob_tran, ytr, action_prob_r
     box_size = config.box_size
     box_size_large = np.array([225, 225])       # larger plane size for evaluation and visualisation
 
-    for i in xrange(img_count):
+    for i in range(img_count):
         image = np.squeeze(data.images[i])
 
         # Predict plane
@@ -121,7 +121,7 @@ def predict_plane(image, config, sess, x, action_prob_tran, ytr, action_prob_rot
     # Initialise pose: randomly sample translation (plane centre) and quaternions
     eu_angles_init = geometry.sample_euler_angles_fix_range(init_count, config.max_euler[0], config.max_euler[1], config.max_euler[2])
     trans_vec_init = (np.random.rand(init_count, 3) * (img_siz * config.trans_frac) + img_siz * (1 - config.trans_frac) / 2.0) - ((img_siz - 1) / 2.0)
-    for i in xrange(init_count):
+    for i in range(init_count):
         matrices[i, 0, :, :] = geometry.euler_matrix(eu_angles_init[i, 0], eu_angles_init[i, 1], eu_angles_init[i, 2], axes='rxyz')
         matrices[i, 0, :3, 3] = trans_vec_init[i]
 
@@ -137,7 +137,7 @@ def predict_plane(image, config, sess, x, action_prob_tran, ytr, action_prob_rot
     slices[:, 0, :, :, :], meshes[:, 0, :, :, :, :] = plane.extract_plane_from_mesh_ortho_batch(image, mesh_current, mesh_siz, 1)
 
     # Iterative prediction
-    for i in xrange(max_test_steps):
+    for i in range(max_test_steps):
         # CNN predictions
         ytc_vals[:, i, :], ytr_vals[:, i, :], yrc_vals[:, i, :], yrr_vals[:, i, :] = sess.run([action_prob_tran, ytr, action_prob_rot, yrr_norm],
                                                                                               feed_dict={x: slices[:, i, :, :, :].transpose((0, 2, 3, 1)), keep_prob: 1.0})
@@ -181,7 +181,7 @@ def predict_mat_diff(ytc=None, ytr=None, yrc=None, yrr=None, weight_tran=False, 
     # Rotation prediction
     if (not weight_rot) or (yrc is None):
         # Regression only.
-        for j in xrange(num_examples):
+        for j in range(num_examples):
             mat_diff[j] = geometry.quaternion_matrix(yrr[j])
     else:
         # Multiply classification probabilities with regressed rotation.
@@ -190,7 +190,7 @@ def predict_mat_diff(ytc=None, ytr=None, yrc=None, yrr=None, weight_tran=False, 
 
         # Convert predicted quaternions to euler angles using the most probable convention
         # Then convert to rotation matrix
-        for j in xrange(num_examples):
+        for j in range(num_examples):
             if rot_axis[j] == 0:
                 euler = np.array(geometry.euler_from_quaternion(yrr[j, :], axes='sxyz'))
                 euler[1:3] = 0
@@ -233,7 +233,7 @@ def calc_mean(matrices, mode):
         init_count = matrices.shape[0]
         poses = np.zeros((init_count, 6))  # [init_count, 6]. Rotation vector followed by translation vector.
         poses[:, 3:] = matrices[:, :3, 3]  # Translation vector
-        for j in xrange(init_count):  # Rotation vector
+        for j in range(init_count):  # Rotation vector
             poses[j, :3] = srmg_util.rotVect(matrices[j, :3, :3])
 
         # Compute Riemannian mean
@@ -248,7 +248,7 @@ def calc_mean(matrices, mode):
         init_count = matrices.shape[0]
         trans_vecs = matrices[:, :3, 3]  # Translation vector
         quats = np.zeros((init_count, 4))
-        for j in xrange(init_count):  # Rotation vector
+        for j in range(init_count):  # Rotation vector
             quats[j, :] = geometry.quaternion_from_matrix(matrices[j], isprecise=True)
         trans_vecs_final = np.mean(trans_vecs, axis=0)
         quats_final = np.mean(quats, axis=0)
@@ -289,7 +289,7 @@ def compute_err(trans_vecs, quats, trans_vecs_gt, quats_gt, images, pix_dim, box
     mse = np.zeros(img_count)
     psnr = np.zeros(img_count)
     ssim = np.zeros(img_count)
-    for i in xrange(img_count):
+    for i in range(img_count):
         slice_gt, mesh_gt = plane.extract_plane_from_pose(images[i][..., 0], trans_vecs_gt[i], quats_gt[i], box_size, 1)
         slice_final, mesh_final = plane.extract_plane_from_pose(images[i][..., 0], trans_vecs[i], quats[i], box_size, 1)
         mse[i] = np.mean((slice_final - slice_gt) ** 2)
@@ -355,7 +355,7 @@ if __name__ == '__main__':
     parse.add_argument('--input_plane', default=3, help="Number of planes as input images. 1: one plane image. 3: three orthogonal plane images")
     parse.add_argument('--landmark_count', default=16, help="Number of landmarks")
     # Testing parameters
-    parse.add_argument('--max_test_steps', default=10, help="Number of inference steps")
+    parse.add_argument('--max_test_steps', type=int, default=10, help="Number of inference steps")
     parse.add_argument('--num_random_init', default=5, help="")
     parse.add_argument('--tran_weighted', default=True, help="Whether to use classification probabilities to weight regressed translation")
     parse.add_argument('--rot_weighted', default=True, help="Whether to use classification probabilities to weight regressed rotation")

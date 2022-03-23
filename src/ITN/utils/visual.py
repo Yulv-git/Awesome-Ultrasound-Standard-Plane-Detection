@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-22 23:18:06
+LastEditTime: 2022-03-23 14:37:32
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/visual.py
 Description: Functions for visualisations.
 Init from https://github.com/yuanwei1989/plane-detection
@@ -38,7 +38,8 @@ def plot_planes(save_dir, suffix, name, img_siz, trans_vec_final, quat_final, me
     ax.quiver(trans_vec_final[1] + img_c[1], trans_vec_final[0] + img_c[0], trans_vec_final[2] + img_c[2],
               mat_final[:, 1], mat_final[:, 0], mat_final[:, 2], length=30, color='g')
 
-    plt.axis('equal')
+    # plt.axis('equal')
+    plt.axis('auto')
     ax.set_title('{0}'.format(name))
     ax.set_xlim(0, img_siz[1])
     ax.set_ylim(0, img_siz[0])
@@ -95,7 +96,8 @@ def plot_planes_movie(save_dir, suffix, name, img_siz, max_test_steps, meshes, m
         quiv = ax1.quiver(matrices[0, n, 1, 3] + img_c[1], matrices[0, n, 0, 3] + img_c[0],
                           matrices[0, n, 2, 3] + img_c[2], matrices[0, n, :, 1], matrices[0, n, :, 0],
                           matrices[0, n, :, 2], length=30, color='g')
-        plt.axis('equal')
+        # plt.axis('equal')
+        plt.axis('auto')
         ax1.set_title('iteration {}'.format(n))
         ax1.set_xlim(0, img_siz[1])
         ax1.set_ylim(0, img_siz[0])

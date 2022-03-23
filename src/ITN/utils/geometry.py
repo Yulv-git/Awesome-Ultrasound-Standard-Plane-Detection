@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-19 10:33:38
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 00:35:14
+LastEditTime: 2022-03-23 10:58:41
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/utils/geometry.py
 Description: Functions for geometric manipulations on quaternions, Euler angles, rotation matrices, etc
    Part of the code is adapted from Christoph Gohlke's code (https://www.lfd.uci.edu/~gohlke/code/transformations.py.html).
@@ -15,10 +15,8 @@ Init from https://github.com/yuanwei1989/plane-detection
 # Copyright (c) 2006-2018, The Regents of the University of California
 # Produced at the Laboratory for Fluorescence Dynamics
 # All rights reserved.
-#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-#
 # * Redistributions of source code must retain the above copyright
 #   notice, this list of conditions and the following disclaimer.
 # * Redistributions in binary form must reproduce the above copyright
@@ -27,7 +25,6 @@ Init from https://github.com/yuanwei1989/plane-detection
 # * Neither the name of the copyright holders nor the names of any
 #   contributors may be used to endorse or promote products derived
 #   from this software without specific prior written permission.
-#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE

@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 23:10:52
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-23 00:47:11
+ * @LastEditTime: 2022-03-23 14:32:35
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/README.md
  * @Description: Modify here please
  * Init from https://github.com/yuanwei1989/plane-detection
@@ -20,12 +20,12 @@ Tensorflow implementation of the MICCAI 2018 paper [Standard Plane Detection in 
 
 ## Prerequisites
 
-- Python 3
-- [Tensorflow 1.8.0](https://github.com/tensorflow/tensorflow/tree/r1.8)
-- [SciPy](http://www.scipy.org/install.html)
-- (Optional) [NiBabel](http://nipy.org/nibabel/installation.html#installation) (for reading NIfTI input)
-- (Optional) [Matplotlib](https://matplotlib.org/users/installing.html) (for visualization)
-- (Optional) [scikit-image](https://scikit-image.org/download) (for computing SSIM)
+- python 3.7
+- tensorflow-gpu 1.14
+- scipy
+- (Optional) nibabel (for reading NIfTI input)
+- (Optional) matplotlib (for visualization)
+- (Optional) scikit-image 0.15 (for computing SSIM)
 - (Optional) [srmg](https://github.com/bishesh/statsCompare-RiemannianManifold-Groups) (for computing Riemannian mean. Already included in this repo)
 - (Optional) [transformations.py](https://www.lfd.uci.edu/~gohlke/code/transformations.py.html) (for computations on rotation matrices, Euler angles and quaternions. Already included in this repo)
 
