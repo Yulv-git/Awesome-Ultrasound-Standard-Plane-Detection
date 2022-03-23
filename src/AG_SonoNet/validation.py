@@ -1,12 +1,26 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:13:41
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/validation.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
+import argparse
 from torch.utils.data import DataLoader
+import numpy as np
+import os
+import SimpleITK as sitk
 
 from dataio.loader import get_dataset, get_dataset_path
 from dataio.transformation import get_dataset_transformation
-from utils.util import json_file_to_pyobj
-
 from models import get_model
-import numpy as np
-import os
+from utils.util import json_file_to_pyobj
 from utils.metrics import dice_score, distance_metric, precision_and_recall
 from utils.error_logger import StatLogger
 
@@ -64,7 +78,7 @@ def validation(json_name):
                                                       })
 
         # Write a nifti image
-        import SimpleITK as sitk
+        
         input_img = sitk.GetImageFromArray(np.transpose(input_arr, (2, 1, 0))); input_img.SetDirection([-1,0,0,0,-1,0,0,0,1])
         label_img = sitk.GetImageFromArray(np.transpose(label_arr, (2, 1, 0))); label_img.SetDirection([-1,0,0,0,-1,0,0,0,1])
         predi_img = sitk.GetImageFromArray(np.transpose(output_arr,(2, 1, 0))); predi_img.SetDirection([-1,0,0,0,-1,0,0,0,1])
@@ -79,10 +93,7 @@ def validation(json_name):
 
 
 if __name__ == '__main__':
-    import argparse
-
     parser = argparse.ArgumentParser(description='CNN Seg Validation Function')
-
     parser.add_argument('-c', '--config', help='testing config file', required=True)
     args = parser.parse_args()
 

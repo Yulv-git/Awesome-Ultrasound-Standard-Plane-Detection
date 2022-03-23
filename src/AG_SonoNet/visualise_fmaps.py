@@ -1,17 +1,30 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:09:17
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/visualise_fmaps.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 from torch.utils.data import DataLoader
-
-from dataio.loader import get_dataset, get_dataset_path
-from dataio.transformation import get_dataset_transformation
-from utils.util import json_file_to_pyobj
-from models import get_model
-
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import math, numpy, os
 from scipy.misc import imresize
 from skimage.transform import resize
-from dataio.loader.utils import write_nifti_img
 from torch.nn import functional as F
+
+from dataio.loader.utils import write_nifti_img
+from dataio.loader import get_dataset, get_dataset_path
+from dataio.transformation import get_dataset_transformation
+from utils.util import json_file_to_pyobj
+from models import get_model
+
 
 def plotNNFilter(units, figure_id, interp='bilinear', colormap=cm.jet, colormap_lim=None):
     plt.ion()

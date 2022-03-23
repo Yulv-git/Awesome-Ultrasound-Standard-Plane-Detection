@@ -1,6 +1,21 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:53:33
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/layers/nonlocal_layer.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch
 from torch import nn
 from torch.nn import functional as F
+from torch.autograd import Variable
+
 from models.networks_other import init_weights
 
 
@@ -8,7 +23,6 @@ class _NonLocalBlockND(nn.Module):
     def __init__(self, in_channels, inter_channels=None, dimension=3, mode='embedded_gaussian',
                  sub_sample_factor=4, bn_layer=True):
         super(_NonLocalBlockND, self).__init__()
-
         assert dimension in [1, 2, 3]
         assert mode in ['embedded_gaussian', 'gaussian', 'dot_product', 'concatenation', 'concat_proper', 'concat_proper_down']
 
@@ -105,7 +119,6 @@ class _NonLocalBlockND(nn.Module):
         :param x: (b, c, t, h, w)
         :return:
         '''
-
         output = self.operation_function(x)
         return output
 
@@ -312,11 +325,8 @@ class NONLocalBlock3D(_NonLocalBlockND):
 
 
 if __name__ == '__main__':
-    from torch.autograd import Variable
-
     mode_list = ['concatenation']
-    #mode_list = ['embedded_gaussian', 'gaussian', 'dot_product', ]
-
+    # mode_list = ['embedded_gaussian', 'gaussian', 'dot_product', ]
     for mode in mode_list:
         print(mode)
         img = Variable(torch.zeros(2, 4, 5))

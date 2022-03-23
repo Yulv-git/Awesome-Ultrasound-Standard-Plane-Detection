@@ -1,10 +1,23 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:05:56
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/feedforward_classifier.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import os
 import numpy as np
-import utils.util as util
 from collections import OrderedDict
-
 import torch
 from torch.autograd import Variable
+
+import utils.util as util
 from .base_model import BaseModel
 from .networks import get_network
 from .layers.loss import *
@@ -14,7 +27,6 @@ from .networks.utils import HookBasedFeatureExtractor
 
 
 class FeedForwardClassifier(BaseModel):
-
     def name(self):
         return 'FeedForwardClassifier'
 
@@ -94,7 +106,6 @@ class FeedForwardClassifier(BaseModel):
             self.logits = self.net.apply_argmax_softmax(self.prediction)
             self.pred = self.logits.data.max(1)
 
-
     def backward(self):
         #print(self.net.apply_argmax_softmax(self.prediction), self.target)
         self.loss = self.criterion(self.prediction, self.target)
@@ -166,7 +177,6 @@ class FeedForwardClassifier(BaseModel):
     def get_feature_maps(self, layer_name, upscale):
         feature_extractor = HookBasedFeatureExtractor(self.net, layer_name, upscale)
         return feature_extractor.forward(Variable(self.input))
-
 
     def save(self, epoch_label):
         self.save_network(self.net, 'S', epoch_label, self.gpu_ids)

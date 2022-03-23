@@ -1,9 +1,22 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:23:46
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/dataio/loader/cmr_3D_dataset.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch.utils.data as data
 import numpy as np
 import datetime
-
 from os import listdir
 from os.path import join
+
 from .utils import load_nifti_img, check_exceptions, is_image_file
 
 

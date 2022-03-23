@@ -1,7 +1,20 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 22:17:15
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/train_classifaction.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
+import argparse
 import numpy as np
 from torch.utils.data import DataLoader, sampler
 from tqdm import tqdm
-
 
 from dataio.loader import get_dataset, get_dataset_path
 from dataio.transformation import get_dataset_transformation
@@ -9,7 +22,6 @@ from utils.util import json_file_to_pyobj
 from utils.visualiser import Visualiser
 from utils.error_logger import ErrorLogger
 from models.networks_other import adjust_learning_rate
-
 from models import get_model
 
 
@@ -74,7 +86,6 @@ def check_warm_start(epoch, model, train_opts):
 
 
 def train(arguments):
-
     # Parse input arguments
     json_filename = arguments.config
     network_debug = arguments.debug
@@ -123,8 +134,7 @@ def train(arguments):
         batch_size = train_opts.batchSize
 
     # loader
-    train_loader = DataLoader(dataset=train_dataset, num_workers=num_workers,
-                              batch_size=batch_size, sampler=train_sampler)
+    train_loader = DataLoader(dataset=train_dataset, num_workers=num_workers, batch_size=batch_size, sampler=train_sampler)
     valid_loader = DataLoader(dataset=valid_dataset, num_workers=num_workers, batch_size=train_opts.batchSize, shuffle=True)
     test_loader  = DataLoader(dataset=test_dataset,  num_workers=num_workers, batch_size=train_opts.batchSize, shuffle=True)
 
@@ -169,7 +179,7 @@ def train(arguments):
             # plt.clf(); plt.bar(train_dataset.label_names, target_arr); plt.pause(0.01)
             # # # --- End ---
 
-                # Visualise predictions
+            # Visualise predictions
             if epoch_iter <= 100:
                 visuals = model.get_current_visuals()
                 visualizer.display_current_results(visuals, epoch=epoch, save_result=False)
@@ -183,7 +193,6 @@ def train(arguments):
         gt_lbls = []
         for loader, split in zip([valid_loader, test_loader], ['validation', 'test']):
             model.reset_results()
-
             for epoch_iter, (images, labels) in tqdm(enumerate(loader, 1), total=len(loader)):
 
                 # Make a forward pass with the model
@@ -228,12 +237,11 @@ def train(arguments):
 
 
 if __name__ == '__main__':
-    import argparse
-
     parser = argparse.ArgumentParser(description='CNN Classification Training Function')
-
-    parser.add_argument('-c', '--config',  help='training config file', required=True)
-    parser.add_argument('-d', '--debug',   help='returns number of parameters and bp/fp runtime', action='store_true')
+    parser.add_argument('-c', '--config', default='./configs/config_sononet_8.json',
+                        help='training config file')
+    parser.add_argument('-d', '--debug',
+                        help='returns number of parameters and bp/fp runtime', action='store_true')
     args = parser.parse_args()
 
     train(args)

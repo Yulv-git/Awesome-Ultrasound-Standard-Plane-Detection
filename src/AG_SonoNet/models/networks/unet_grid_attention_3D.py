@@ -1,11 +1,25 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:00:58
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks/unet_grid_attention_3D.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch.nn as nn
-from .utils import UnetConv3, UnetUp3, UnetGridGatingSignal3
 import torch.nn.functional as F
+
+from .utils import UnetConv3, UnetUp3, UnetGridGatingSignal3
 from models.layers.grid_attention_layer import GridAttentionBlock3D
 from models.networks_other import init_weights
 
-class unet_grid_attention_3D(nn.Module):
 
+class unet_grid_attention_3D(nn.Module):
     def __init__(self, feature_scale=4, n_classes=21, is_deconv=True, in_channels=3,
                  nonlocal_mode='concatenation', attention_dsample=(2,2,2), is_batchnorm=True):
         super(unet_grid_attention_3D, self).__init__()
@@ -95,16 +109,3 @@ class unet_grid_attention_3D(nn.Module):
         log_p = F.softmax(pred, dim=1)
 
         return log_p
-
-
-
-
-
-
-
-
-
-
-
-
-

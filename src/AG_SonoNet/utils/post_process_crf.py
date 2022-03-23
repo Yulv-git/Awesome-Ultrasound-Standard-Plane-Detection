@@ -1,6 +1,18 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:12:29
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/utils/post_process_crf.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import os, argparse
 import numpy as np, nibabel as nib
-
 import pydensecrf.densecrf as dcrf
 from pydensecrf.utils import create_pairwise_bilateral, create_pairwise_gaussian
 

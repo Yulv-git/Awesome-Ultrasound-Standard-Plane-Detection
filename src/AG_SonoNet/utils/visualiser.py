@@ -1,12 +1,26 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:15:10
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/utils/visualiser.py
+Description: Use the following comment to launch a visdom server
+             python -m visdom.server
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import numpy as np
 import pandas as pd
 import os
 import ntpath
 import time
+import visdom
+
 from utils import util, html
 
-# Use the following comment to launch a visdom server
-# python -m visdom.server
 
 class Visualiser():
     def __init__(self, opt, save_dir, filename='loss_log.txt'):
@@ -23,7 +37,6 @@ class Visualiser():
         self.error_wins = dict()
 
         if self.display_id > 0:
-            import visdom
             self.vis = visdom.Visdom(port=opt.display_port)
 
         if self.use_html:
@@ -120,7 +133,6 @@ class Visualiser():
                                                           width=350, height=350,
                                                           win=self.error_wins[key_s]))
 
-
     def plot_heatmap(self, x, y, key, split_name, **kwargs):
         key_s = key+'_'+split_name
         if key_s not in self.error_plots:
@@ -150,6 +162,7 @@ class Visualiser():
             ))
         else:
             self.vis.updateTrace(X=np.array([x]), Y=np.array([y]), win=self.error_plots[key], name=split_name)
+
     # errors: dictionary of error labels and values
     def plot_current_errors(self, epoch, errors, split_name, counter_ratio=0.0, **kwargs):
         if self.display_id > 0:
@@ -163,7 +176,6 @@ class Visualiser():
                     self.plot_line(x,y,key,split_name)
                 elif y.ndim == 2:
                     self.plot_heatmap(x,y,key,split_name, **kwargs)
-
 
     # errors: same format as |errors| of plotCurrentErrors
     def print_current_errors(self, epoch, errors, split_name):

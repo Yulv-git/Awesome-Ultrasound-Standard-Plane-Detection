@@ -1,5 +1,17 @@
-# Abstract level model definition
-# Returns the model class for specified network type
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:04:15
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/__init__.py
+Description: Abstract level model definition
+Returns the model class for specified network type
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import os
 
 
@@ -28,7 +40,6 @@ class ModelOpts:
         # Attention Classifier
         self.aggregation_mode = 'concatenation'
 
-
     def initialise(self, json_opts):
         opts = json_opts
 
@@ -56,8 +67,8 @@ class ModelOpts:
         # Classifier
         if hasattr(opts, 'aggregation_mode'): self.aggregation_mode = opts.aggregation_mode
 
-def get_model(json_opts):
 
+def get_model(json_opts):
     # Neural Network Model Initialisation
     model = None
     model_opts = ModelOpts()
@@ -81,7 +92,6 @@ def get_model(json_opts):
         # Return the model type
         from .aggregated_classifier import AggregatedClassifier
         model = AggregatedClassifier()
-
 
     # Initialise the created model
     model.initialize(model_opts)

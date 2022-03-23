@@ -1,8 +1,21 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:06:33
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/feedforward_seg_model.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch
 from torch.autograd import Variable
 import torch.optim as optim
-
 from collections import OrderedDict
+
 import utils.util as util
 from .base_model import BaseModel
 from .networks import get_network
@@ -13,7 +26,6 @@ from .networks.utils import HookBasedFeatureExtractor
 
 
 class FeedForwardSegmentation(BaseModel):
-
     def name(self):
         return 'FeedForwardSegmentation'
 

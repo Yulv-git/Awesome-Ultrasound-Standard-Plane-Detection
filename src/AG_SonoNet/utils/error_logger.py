@@ -1,10 +1,23 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:10:11
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/utils/error_logger.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import numpy as np
+
 from .util import csv_write
 
 
 class BaseMeter(object):
     """Just a place holderb"""
-
     def __init__(self, name):
         self.reset()
         self.name = name
@@ -21,7 +34,6 @@ class BaseMeter(object):
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""
-
     def __init__(self, name):
         self.reset()
         self.name = name
@@ -41,9 +53,9 @@ class AverageMeter(object):
     def get_value(self):
         return self.avg
 
+
 class StatMeter(object):
     """Computes and stores the error vals and image names"""
-
     def __init__(self, name, csv_name=None):
         self.reset()
         self.name = name
@@ -66,7 +78,6 @@ class StatMeter(object):
 
 
 class ErrorLogger(object):
-
     def __init__(self):
         self.variables = {'train': dict(),
                           'validation': dict(),
@@ -101,7 +112,6 @@ class ErrorLogger(object):
 
 
 class StatLogger(object):
-
     def __init__(self):
         self.variables = {'train': dict(),
                           'validation': dict(),

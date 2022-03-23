@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:12:58
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/utils/util.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 from __future__ import print_function
 import torch
 from PIL import Image
@@ -8,6 +21,7 @@ import collections
 import json
 import csv
 from skimage.exposure import rescale_intensity
+
 
 # Converts a Tensor into a Numpy array
 # |imtype|: the desired type of the converted numpy array
@@ -54,11 +68,13 @@ def info(object, spacing=10, collapse=1):
                       processFunc(str(getattr(object, method).__doc__)))
                      for method in methodList]) )
 
+
 def varname(p):
     for line in inspect.getframeinfo(inspect.currentframe().f_back)[3]:
         m = re.search(r'\bvarname\s*\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*\)', line)
         if m:
             return m.group(1)
+
 
 def print_numpy(x, val=True, shp=False):
     x = x.astype(np.float64)

@@ -4,7 +4,7 @@
  * @Date: 2022-03-20 18:17:37
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-20 23:15:42
+ * @LastEditTime: 2022-03-23 22:15:46
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/README.md
  * @Description: Modify here please
  * Init from https://github.com/ozan-oktay/Attention-Gated-Networks
@@ -34,6 +34,14 @@ Pytorch implementation of attention gates used in U-Net and VGG-16 models. The f
 [Conference Paper](https://openreview.net/pdf?id=Skft7cijM) <br />
 [Conference Poster](https://www.doc.ic.ac.uk/~oo2113/posters/MIDL2018_poster.pdf)
 
-## Installation
+## Dependent library installation
 
-pip install --process-dependency-links -e .
+```bash
+wget https://github.com/ncullen93/torchsample/archive/refs/tags/v0.1.3.zip
+unzip v0.1.3.zip
+rm v0.1.3.zip
+cd torchsample-0.1.3
+python setup.py install
+cd ..
+rm -rf torchsample-0.1.3
+```

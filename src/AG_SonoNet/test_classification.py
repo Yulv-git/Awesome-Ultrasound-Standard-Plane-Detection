@@ -1,7 +1,21 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:16:25
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/test_classification.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
+import argparse
 import os, sys, numpy as np
 from torch.utils.data import DataLoader, sampler
 from tqdm import tqdm
-
+import pickle as pkl
 
 from dataio.loader import get_dataset, get_dataset_path
 from dataio.transformation import get_dataset_transformation
@@ -9,8 +23,8 @@ from utils.util import json_file_to_pyobj
 from utils.visualiser import Visualiser
 from utils.error_logger import ErrorLogger
 from models.networks_other import adjust_learning_rate
-
 from models import get_model
+
 
 class HiddenPrints:
     def __enter__(self):
@@ -70,7 +84,6 @@ class StratifiedSampler(object):
 
 
 def test(arguments):
-
     # Parse input arguments
     json_filename = arguments.config
     network_debug = arguments.debug
@@ -101,15 +114,14 @@ def test(arguments):
     
     valid_dataset = ds_class(ds_path, split='val',   transform=ds_transform['valid'], preload_data=train_opts.preloadData)
     test_dataset  = ds_class(ds_path, split='test',  transform=ds_transform['valid'], preload_data=train_opts.preloadData)
-   # loader
+    # loader
     batch_size = train_opts.batchSize
     valid_loader = DataLoader(dataset=valid_dataset, num_workers=num_workers, batch_size=train_opts.batchSize, shuffle=False)
     test_loader  = DataLoader(dataset=test_dataset,  num_workers=0, batch_size=train_opts.batchSize, shuffle=False)
 
     # Visualisation Parameters
     filename = 'test_loss_log.txt'
-    visualizer = Visualiser(json_opts.visualisation, save_dir=model.save_dir,
-                            filename=filename)
+    visualizer = Visualiser(json_opts.visualisation, save_dir=model.save_dir, filename=filename)
     error_logger = ErrorLogger()
 
     # Training Function
@@ -126,9 +138,7 @@ def test(arguments):
     for loader, split in zip([test_loader], ['test']):
     #for loader, split in zip([valid_loader, test_loader], ['validation', 'test']):
         model.reset_results()
-
         for epoch_iter, (images, labels) in tqdm(enumerate(loader, 1), total=len(loader)):
-
             # Make a forward pass with the model
             model.set_input(images, labels)
             model.validate()
@@ -142,13 +152,12 @@ def test(arguments):
     # for split in ['train', 'validation', 'test']:
     for split in ['test']:
         # exclude bckground
-        #track_labels = np.delete(track_labels, 3)
-        #show_labels = train_dataset.label_names[:3] + train_dataset.label_names[4:]
+        # track_labels = np.delete(track_labels, 3)
+        # show_labels = train_dataset.label_names[:3] + train_dataset.label_names[4:]
         show_labels = valid_dataset.label_names
         visualizer.plot_current_errors(300, error_logger.get_errors(split), split_name=split, labels=show_labels)
         visualizer.print_current_errors(300, error_logger.get_errors(split), split_name=split)
 
-        import pickle as pkl
         dst_file = os.path.join(model.save_dir, 'test_result.pkl')
         with open(dst_file, 'wb') as f:
             d = error_logger.get_errors(split)
@@ -165,10 +174,7 @@ def test(arguments):
         
 
 if __name__ == '__main__':
-    import argparse
-
     parser = argparse.ArgumentParser(description='CNN Seg Training Function')
-
     parser.add_argument('-c', '--config',  help='training config file', required=True)
     parser.add_argument('-d', '--debug',   help='returns number of parameters and bp/fp runtime', action='store_true')
     parser.add_argument('-t', '--time',   help='returns number of parameters and bp/fp runtime', action='store_true')

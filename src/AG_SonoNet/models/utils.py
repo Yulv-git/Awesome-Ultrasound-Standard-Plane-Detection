@@ -1,14 +1,25 @@
+#!/usr/bin/env python
+# coding=utf-8
 '''
-Misc Utility functions
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:09:14
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/utils.py
+Description: Misc Utility functions
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
-
 import os
 import numpy as np
 import torch.optim as optim
 from torch.nn import CrossEntropyLoss
-from utils.metrics import segmentation_scores, dice_score_list
 from sklearn import metrics
+
+from utils.metrics import segmentation_scores, dice_score_list
 from .layers.loss import *
+
 
 def get_optimizer(option, params):
     opt_alg = 'sgd' if not hasattr(option, 'optim') else option.optim
@@ -41,6 +52,7 @@ def get_criterion(opts):
 
     return criterion
 
+
 def recursive_glob(rootdir='.', suffix=''):
     """Performs recursive glob with given suffix and rootdir 
         :param rootdir is the root directory
@@ -49,6 +61,7 @@ def recursive_glob(rootdir='.', suffix=''):
     return [os.path.join(looproot, filename)
         for looproot, _, filenames in os.walk(rootdir)
         for filename in filenames if filename.endswith(suffix)]
+
 
 def poly_lr_scheduler(optimizer, init_lr, iter, lr_decay_iter=1, max_iter=30000, power=0.9,):
     """Polynomial decay of learning rate

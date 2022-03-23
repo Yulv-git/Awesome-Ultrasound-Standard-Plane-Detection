@@ -1,12 +1,25 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:01:28
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks/unet_nonlocal_2D.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import math
 import torch.nn as nn
+import torch.nn.functional as F
+
 from .utils import unetConv2, unetUp
 from models.layers.nonlocal_layer import NONLocalBlock2D
-import torch.nn.functional as F
 
 
 class unet_nonlocal_2D(nn.Module):
-
     def __init__(self, feature_scale=4, n_classes=21, is_deconv=True, in_channels=3,
                  is_batchnorm=True, nonlocal_mode='embedded_gaussian', nonlocal_sf=4):
         super(unet_nonlocal_2D, self).__init__()

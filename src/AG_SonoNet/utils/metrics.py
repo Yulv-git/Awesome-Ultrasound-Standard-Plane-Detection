@@ -1,8 +1,20 @@
-# Originally written by wkentaro
-# https://github.com/wkentaro/pytorch-fcn/blob/master/torchfcn/utils.py
-
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:12:12
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/utils/metrics.py
+Description: Originally written by wkentaro https://github.com/wkentaro/pytorch-fcn/blob/master/torchfcn/utils.py
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import numpy as np
 import cv2
+from sklearn.metrics import precision_score, recall_score
+
 
 def _fast_hist(label_true, label_pred, n_class):
     mask = (label_true >= 0) & (label_true < n_class)
@@ -38,7 +50,6 @@ def segmentation_scores(label_trues, label_preds, n_class):
 
 def dice_score_list(label_gt, label_pred, n_class):
     """
-
     :param label_gt: [WxH] (2D images)
     :param label_pred: [WxH] (2D images)
     :param n_class: number of label classes
@@ -60,13 +71,11 @@ def dice_score_list(label_gt, label_pred, n_class):
 
 def dice_score(label_gt, label_pred, n_class):
     """
-
     :param label_gt:
     :param label_pred:
     :param n_class:
     :return:
     """
-
     epsilon = 1.0e-6
     assert np.all(label_gt.shape == label_pred.shape)
     dice_scores = np.zeros(n_class, dtype=np.float32)
@@ -80,7 +89,6 @@ def dice_score(label_gt, label_pred, n_class):
 
 
 def precision_and_recall(label_gt, label_pred, n_class):
-    from sklearn.metrics import precision_score, recall_score
     assert len(label_gt) == len(label_pred)
     precision = np.zeros(n_class, dtype=np.float32)
     recall = np.zeros(n_class, dtype=np.float32)
@@ -97,7 +105,7 @@ def distance_metric(seg_A, seg_B, dx, k):
         Measure the distance errors between the contours of two segmentations.
         The manual contours are drawn on 2D slices.
         We calculate contour to contour distance for each slice.
-        """
+    """
 
     # Extract the label k from the segmentation maps to generate binary maps
     seg_A = (seg_A == k)
@@ -143,4 +151,5 @@ def distance_metric(seg_A, seg_B, dx, k):
     # Return the mean distance and Hausdorff distance across 2D slices
     mean_md = np.mean(table_md) if table_md else None
     mean_hd = np.mean(table_hd) if table_hd else None
+
     return mean_md, mean_hd

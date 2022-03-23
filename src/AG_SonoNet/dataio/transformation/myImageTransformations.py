@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:30:15
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/dataio/transformation/myImageTransformations.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import numpy as np
 import scipy
 import scipy.ndimage
@@ -6,6 +19,7 @@ from scipy.ndimage.interpolation import map_coordinates
 import collections
 from PIL import Image
 import numbers
+from torchvision.transforms import Lambda
 
 
 def center_crop(x, center_crop_size):
@@ -71,9 +85,7 @@ def elastic_transform(image, alpha=1000, sigma=30, spline_order=1, mode='nearest
 
 
 class Merge(object):
-    """Merge a group of images
-    """
-
+    """Merge a group of images"""
     def __init__(self, axis=-1):
         self.axis = axis
 
@@ -92,9 +104,7 @@ class Merge(object):
 
 
 class Split(object):
-    """Split images into individual arraies
-    """
-
+    """Split images into individual arraies"""
     def __init__(self, *slices, **kwargs):
         assert isinstance(slices, collections.Sequence)
         slices_ = []
@@ -121,9 +131,7 @@ class Split(object):
 
 
 class ElasticTransform(object):
-    """Apply elastic transformation on a numpy.ndarray (H x W x C)
-    """
-
+    """Apply elastic transformation on a numpy.ndarray (H x W x C)"""
     def __init__(self, alpha, sigma):
         self.alpha = alpha
         self.sigma = sigma
@@ -141,9 +149,7 @@ class ElasticTransform(object):
 
 
 class PoissonSubsampling(object):
-    """Poisson subsampling on a numpy.ndarray (H x W x C)
-    """
-
+    """Poisson subsampling on a numpy.ndarray (H x W x C)"""
     def __init__(self, peak, random_state=np.random):
         self.peak = peak
         self.random_state = random_state
@@ -158,9 +164,7 @@ class PoissonSubsampling(object):
 
 
 class AddGaussianNoise(object):
-    """Add gaussian noise to a numpy.ndarray (H x W x C)
-    """
-
+    """Add gaussian noise to a numpy.ndarray (H x W x C)"""
     def __init__(self, mean, sigma, random_state=np.random):
         self.sigma = sigma
         self.mean = mean
@@ -183,9 +187,7 @@ class AddGaussianNoise(object):
 
 
 class AddSpeckleNoise(object):
-    """Add speckle noise to a numpy.ndarray (H x W x C)
-    """
-
+    """Add speckle noise to a numpy.ndarray (H x W x C)"""
     def __init__(self, mean, sigma, random_state=np.random):
         self.sigma = sigma
         self.mean = mean
@@ -210,9 +212,7 @@ class AddSpeckleNoise(object):
 
 
 class GaussianBlurring(object):
-    """Apply gaussian blur to a numpy.ndarray (H x W x C)
-    """
-
+    """Apply gaussian blur to a numpy.ndarray (H x W x C)"""
     def __init__(self, sigma, random_state=np.random):
         self.sigma = sigma
         self.random_state = random_state
@@ -228,9 +228,7 @@ class GaussianBlurring(object):
 
 
 class AddGaussianPoissonNoise(object):
-    """Add poisson noise with gaussian blurred image to a numpy.ndarray (H x W x C)
-    """
-
+    """Add poisson noise with gaussian blurred image to a numpy.ndarray (H x W x C)"""
     def __init__(self, sigma, peak, random_state=np.random):
         self.sigma = sigma
         self.peak = peak
@@ -257,7 +255,6 @@ class MaxScaleNumpy(object):
     """scale with max and min of each channel of the numpy array i.e.
     channel = (channel - mean) / std
     """
-
     def __init__(self, range_min=0.0, range_max=1.0):
         self.scale = (range_min, range_max)
 
@@ -271,7 +268,6 @@ class MedianScaleNumpy(object):
     """Scale with median and mean of each channel of the numpy array i.e.
     channel = (channel - mean) / std
     """
-
     def __init__(self, range_min=0.0, range_max=1.0):
         self.scale = (range_min, range_max)
 
@@ -285,7 +281,6 @@ class NormalizeNumpy(object):
     """Normalize each channel of the numpy array i.e.
     channel = (channel - mean) / std
     """
-
     def __call__(self, image):
         image -= image.mean(axis=(0, 1))
         s = image.std(axis=(0, 1))
@@ -295,9 +290,7 @@ class NormalizeNumpy(object):
 
 
 class MutualExclude(object):
-    """Remove elements from one channel
-    """
-
+    """Remove elements from one channel"""
     def __init__(self, exclude_channel, from_channel):
         self.from_channel = from_channel
         self.exclude_channel = exclude_channel
@@ -313,7 +306,6 @@ class RandomCropNumpy(object):
     the given size. size can be a tuple (target_height, target_width)
     or an integer, in which case the target will be of a square shape (size, size)
     """
-
     def __init__(self, size, random_state=np.random):
         if isinstance(size, numbers.Number):
             self.size = (int(size), int(size))
@@ -337,7 +329,6 @@ class CenterCropNumpy(object):
     the given size. size can be a tuple (target_height, target_width)
     or an integer, in which case the target will be of a square shape (size, size)
     """
-
     def __init__(self, size):
         if isinstance(size, numbers.Number):
             self.size = (int(size), int(size))
@@ -353,9 +344,7 @@ class CenterCropNumpy(object):
 
 
 class RandomRotate(object):
-    """Rotate a PIL.Image or numpy.ndarray (H x W x C) randomly
-    """
-
+    """Rotate a PIL.Image or numpy.ndarray (H x W x C) randomly"""
     def __init__(self, angle_range=(0.0, 360.0), axes=(0, 1), mode='reflect', random_state=np.random):
         assert isinstance(angle_range, tuple)
         self.angle_range = angle_range
@@ -378,9 +367,7 @@ class RandomRotate(object):
 
 
 class BilinearResize(object):
-    """Resize a PIL.Image or numpy.ndarray (H x W x C)
-    """
-
+    """Resize a PIL.Image or numpy.ndarray (H x W x C)"""
     def __init__(self, zoom):
         self.zoom = [zoom, zoom, 1]
 
@@ -403,7 +390,6 @@ class EnhancedCompose(object):
         >>>     transforms.ToTensor(),
         >>> ])
     """
-
     def __init__(self, transforms):
         self.transforms = transforms
 
@@ -429,8 +415,6 @@ class EnhancedCompose(object):
 
 
 if __name__ == '__main__':
-    from torchvision.transforms import Lambda
-
     input_channel = 3
     target_channel = 3
 

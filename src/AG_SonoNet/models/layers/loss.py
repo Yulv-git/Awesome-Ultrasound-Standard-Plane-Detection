@@ -1,8 +1,22 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:51:22
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/layers/loss.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.modules.loss import _Loss
 from torch.autograd import Function, Variable
+
 
 def cross_entropy_2D(input, target, weight=None, size_average=True):
     n, c, h, w = input.size()
@@ -91,7 +105,6 @@ class One_Hot(nn.Module):
 
 
 if __name__ == '__main__':
-    from torch.autograd import Variable
     depth=3
     batch_size=2
     encoder = One_Hot(depth=depth).forward

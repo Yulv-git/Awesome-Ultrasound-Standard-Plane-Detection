@@ -1,6 +1,20 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:18:50
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks/utils.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
 from models.networks_other import init_weights
 
 
@@ -277,7 +291,6 @@ class UnetUp3_CT(nn.Module):
 
 # Squeeze-and-Excitation Network
 class SqEx(nn.Module):
-
     def __init__(self, n_features, reduction=6):
         super(SqEx, self).__init__()
 
@@ -377,8 +390,6 @@ class residualBottleneck(nn.Module):
         out = self.relu(out)
 
         return out
-
-
 
 
 class SeqModelFeatureExtractor(nn.Module):

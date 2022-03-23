@@ -1,13 +1,26 @@
-import torch.nn as nn
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:00:28
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks/unet_CT_single_att_dsv_3D.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch
-from .utils import UnetConv3, UnetUp3_CT, UnetGridGatingSignal3, UnetDsv3
+import torch.nn as nn
 import torch.nn.functional as F
+
+from .utils import UnetConv3, UnetUp3_CT, UnetGridGatingSignal3, UnetDsv3
 from models.networks_other import init_weights
 from models.layers.grid_attention_layer import GridAttentionBlock3D
 
 
 class unet_CT_single_att_dsv_3D(nn.Module):
-
     def __init__(self, feature_scale=4, n_classes=21, is_deconv=True, in_channels=3,
                  nonlocal_mode='concatenation', attention_dsample=(2,2,2), is_batchnorm=True):
         super(unet_CT_single_att_dsv_3D, self).__init__()
@@ -102,7 +115,6 @@ class unet_CT_single_att_dsv_3D(nn.Module):
 
         return final
 
-
     @staticmethod
     def apply_argmax_softmax(pred):
         log_p = F.softmax(pred, dim=1)
@@ -130,5 +142,3 @@ class MultiAttentionBlock(nn.Module):
         gate_1, attention_1 = self.gate_block_1(input, gating_signal)
 
         return self.combine_gates(gate_1), attention_1
-
-

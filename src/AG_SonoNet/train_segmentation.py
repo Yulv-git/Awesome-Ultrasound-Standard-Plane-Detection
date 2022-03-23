@@ -1,18 +1,30 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:17:15
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/train_segmentation.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
+import argparse
 import numpy
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-
 
 from dataio.loader import get_dataset, get_dataset_path
 from dataio.transformation import get_dataset_transformation
 from utils.util import json_file_to_pyobj
 from utils.visualiser import Visualiser
 from utils.error_logger import ErrorLogger
-
 from models import get_model
 
-def train(arguments):
 
+def train(arguments):
     # Parse input arguments
     json_filename = arguments.config
     network_debug = arguments.debug
@@ -37,12 +49,12 @@ def train(arguments):
         exit()
 
     # Setup Data Loader
-    train_dataset = ds_class(ds_path, split='train',      transform=ds_transform['train'], preload_data=train_opts.preloadData)
+    train_dataset = ds_class(ds_path, split='train', transform=ds_transform['train'], preload_data=train_opts.preloadData)
     valid_dataset = ds_class(ds_path, split='validation', transform=ds_transform['valid'], preload_data=train_opts.preloadData)
-    test_dataset  = ds_class(ds_path, split='test',       transform=ds_transform['valid'], preload_data=train_opts.preloadData)
+    test_dataset  = ds_class(ds_path, split='test', transform=ds_transform['valid'], preload_data=train_opts.preloadData)
     train_loader = DataLoader(dataset=train_dataset, num_workers=16, batch_size=train_opts.batchSize, shuffle=True)
     valid_loader = DataLoader(dataset=valid_dataset, num_workers=16, batch_size=train_opts.batchSize, shuffle=False)
-    test_loader  = DataLoader(dataset=test_dataset,  num_workers=16, batch_size=train_opts.batchSize, shuffle=False)
+    test_loader  = DataLoader(dataset=test_dataset, num_workers=16, batch_size=train_opts.batchSize, shuffle=False)
 
     # Visualisation Parameters
     visualizer = Visualiser(json_opts.visualisation, save_dir=model.save_dir)
@@ -67,7 +79,6 @@ def train(arguments):
         # Validation and Testing Iterations
         for loader, split in zip([valid_loader, test_loader], ['validation', 'test']):
             for epoch_iter, (images, labels) in tqdm(enumerate(loader, 1), total=len(loader)):
-
                 # Make a forward pass with the model
                 model.set_input(images, labels)
                 model.validate()
@@ -96,10 +107,7 @@ def train(arguments):
 
 
 if __name__ == '__main__':
-    import argparse
-
     parser = argparse.ArgumentParser(description='CNN Seg Training Function')
-
     parser.add_argument('-c', '--config',  help='training config file', required=True)
     parser.add_argument('-d', '--debug',   help='returns number of parameters and bp/fp runtime', action='store_true')
     args = parser.parse_args()

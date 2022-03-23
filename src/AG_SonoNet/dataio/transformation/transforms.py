@@ -1,9 +1,21 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:31:55
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/dataio/transformation/transforms.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torchsample.transforms as ts
 from pprint import pprint
 
 
 class Transformations:
-
     def __init__(self, name):
         self.name = name
 
@@ -75,7 +87,6 @@ class Transformations:
         return {'train': train_transform, 'valid': valid_transform}
 
     def cmr_3d_sax_transform(self):
-
         train_transform = ts.Compose([ts.PadNumpy(size=self.scale_size),
                                       ts.ToTensor(),
                                       ts.ChannelsFirst(),
@@ -106,7 +117,6 @@ class Transformations:
         return {'train': train_transform, 'valid': valid_transform}
 
     def hms_sax_transform(self):
-
         # Training transformation
         # 2D Stack input - 3D High Resolution output segmentation
 
@@ -139,7 +149,6 @@ class Transformations:
 
 
     def ultrasound_transform(self):
-
         train_transform = ts.Compose([ts.ToTensor(),
                                       ts.TypeCast(['float']),
                                       ts.AddChannel(axis=0),

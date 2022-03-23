@@ -1,14 +1,28 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:54:41
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks/sononet_grid_attention.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import numpy as np
 import math
 import torch.nn as nn
-from .utils import unetConv2, unetUp, conv2DBatchNormRelu, conv2DBatchNorm
 import torch
 import torch.nn.functional as F
+
+from .utils import unetConv2, unetUp, conv2DBatchNormRelu, conv2DBatchNorm
 from models.layers.grid_attention_layer import GridAttentionBlock2D_TORR as AttentionBlock2D
 from models.networks_other import init_weights
 
-class sononet_grid_attention(nn.Module):
 
+class sononet_grid_attention(nn.Module):
     def __init__(self, feature_scale=4, n_classes=21, in_channels=3, is_batchnorm=True, n_convs=None,
                  nonlocal_mode='concatenation', aggregation_mode='concat'):
         super(sononet_grid_attention, self).__init__()
@@ -104,7 +118,6 @@ class sononet_grid_attention(nn.Module):
     def aggregation_concat(self, *attended_maps):
         return self.classifier(torch.cat(attended_maps, dim=1))
 
-
     def forward(self, inputs):
         # Feature Extraction
         conv1    = self.conv1(inputs)
@@ -134,7 +147,6 @@ class sononet_grid_attention(nn.Module):
         g2 = torch.sum(g_conv2.view(batch_size, fsizes[1], -1), dim=-1)
 
         return self.aggregate(g1, g2, pooled)
-
 
     @staticmethod
     def apply_argmax_softmax(pred):

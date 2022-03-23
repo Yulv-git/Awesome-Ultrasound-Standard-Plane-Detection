@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 21:08:27
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks_other.py
+Description: Functions & Classes
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch
 import torch.nn as nn
 from torch.nn import init
@@ -6,9 +19,6 @@ from torch.autograd import Variable
 from torch.optim import lr_scheduler
 import time
 import numpy as np
-###############################################################################
-# Functions
-###############################################################################
 
 
 def weights_init_normal(m):
@@ -89,6 +99,7 @@ def adjust_learning_rate(optimizer, lr):
     """Sets the learning rate to a fixed number"""
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
+
 
 def get_scheduler(optimizer, opt):
     print('opt.lr_policy = [{}]'.format(opt.lr_policy))
@@ -245,10 +256,6 @@ def benchmark_fp_bp_time(model, x, y, n_trial=1000):
     del model
 
     return np.mean(t_forward), np.mean(t_backward)
-
-##############################################################################
-# Classes
-##############################################################################
 
 
 # Defines the GAN loss which uses either LSGAN or the regular GAN.

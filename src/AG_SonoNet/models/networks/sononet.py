@@ -1,12 +1,26 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:55:34
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks/sononet.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import numpy as np
 import math
 import torch.nn as nn
-from .utils import unetConv2, unetUp, conv2DBatchNormRelu, conv2DBatchNorm
 import torch.nn.functional as F
+
+from .utils import unetConv2, unetUp, conv2DBatchNormRelu, conv2DBatchNorm
 from models.networks_other import init_weights
 
-class sononet(nn.Module):
 
+class sononet(nn.Module):
     def __init__(self, feature_scale=4, n_classes=21, in_channels=3, is_batchnorm=True, n_convs=None):
         super(sononet, self).__init__()
         self.in_channels = in_channels
@@ -46,7 +60,6 @@ class sononet(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 init_weights(m, init_type='kaiming')
 
-
     def forward(self, inputs):
         # Feature Extraction
         conv1    = self.conv1(inputs)
@@ -71,7 +84,6 @@ class sononet(nn.Module):
 
         return pooled
 
-
     @staticmethod
     def apply_argmax_softmax(pred):
         log_p = F.softmax(pred, dim=1)
@@ -81,4 +93,3 @@ class sononet(nn.Module):
 
 def sononet2(feature_scale=4, n_classes=21, in_channels=3, is_batchnorm=True):
     return sononet(feature_scale, n_classes, in_channels, is_batchnorm, n_convs=[3,3,3,2,2])
-

@@ -1,6 +1,21 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:51:10
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/layers/grid_attention_layer.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 import torch
 from torch import nn
 from torch.nn import functional as F
+from torch.autograd import Variable
+
 from models.networks_other import init_weights
 
 
@@ -8,7 +23,6 @@ class _GridAttentionBlockND(nn.Module):
     def __init__(self, in_channels, gating_channels, inter_channels=None, dimension=3, mode='concatenation',
                  sub_sample_factor=(2,2,2)):
         super(_GridAttentionBlockND, self).__init__()
-
         assert dimension in [2, 3]
         assert mode in ['concatenation', 'concatenation_debug', 'concatenation_residual']
 
@@ -77,7 +91,6 @@ class _GridAttentionBlockND(nn.Module):
         :param g: (b, g_d)
         :return:
         '''
-
         output = self.operation_function(x, g)
         return output
 
@@ -184,7 +197,6 @@ class _GridAttentionBlockND_TORR(nn.Module):
     def __init__(self, in_channels, gating_channels, inter_channels=None, dimension=3, mode='concatenation',
                  sub_sample_factor=(1,1,1), bn_layer=True, use_W=True, use_phi=True, use_theta=True, use_psi=True, nonlinearity1='relu'):
         super(_GridAttentionBlockND_TORR, self).__init__()
-
         assert dimension in [2, 3]
         assert mode in ['concatenation', 'concatenation_softmax',
                         'concatenation_sigmoid', 'concatenation_mean',
@@ -238,15 +250,12 @@ class _GridAttentionBlockND_TORR(nn.Module):
             self.theta = conv_nd(in_channels=self.in_channels, out_channels=self.inter_channels,
                                  kernel_size=self.sub_sample_kernel_size, stride=self.sub_sample_factor, padding=0, bias=False)
 
-
         if use_phi:
             self.phi = conv_nd(in_channels=self.gating_channels, out_channels=self.inter_channels,
                                kernel_size=self.sub_sample_kernel_size, stride=self.sub_sample_factor, padding=0, bias=False)
 
-
         if use_psi:
             self.psi = conv_nd(in_channels=self.inter_channels, out_channels=1, kernel_size=1, stride=1, padding=0, bias=True)
-
 
         if nonlinearity1:
             if nonlinearity1 == 'relu':
@@ -260,7 +269,6 @@ class _GridAttentionBlockND_TORR(nn.Module):
         # Initialise weights
         for m in self.children():
             init_weights(m, init_type='kaiming')
-
 
         if use_psi and self.mode == 'concatenation_sigmoid':
             nn.init.constant(self.psi.bias.data, 3.0)
@@ -287,7 +295,6 @@ class _GridAttentionBlockND_TORR(nn.Module):
         :param g: (b, g_d)
         :return:
         '''
-
         output = self.operation_function(x, g)
         return output
 
@@ -385,14 +392,9 @@ class GridAttentionBlock3D_TORR(_GridAttentionBlockND_TORR):
                                                    bn_layer=bn_layer)
 
 
-
 if __name__ == '__main__':
-    from torch.autograd import Variable
-
     mode_list = ['concatenation']
-
     for mode in mode_list:
-
         img = Variable(torch.rand(2, 16, 10, 10, 10))
         gat = Variable(torch.rand(2, 64, 4, 4, 4))
         net = GridAttentionBlock3D(in_channels=16, inter_channels=16, gating_channels=64, mode=mode, sub_sample_factor=(2,2,2))

@@ -1,15 +1,27 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 20:12:34
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/visualise_att_maps_epoch.py
+Description: Modify here please
+Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+'''
 from torch.utils.data import DataLoader
-
-from dataio.loader import get_dataset, get_dataset_path
-from dataio.transformation import get_dataset_transformation
-from utils.util import json_file_to_pyobj
-from models import get_model
-
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import math, numpy, os
-from dataio.loader.utils import write_nifti_img
 from torch.nn import functional as F
+
+from dataio.loader import get_dataset, get_dataset_path
+from dataio.transformation import get_dataset_transformation
+from dataio.loader.utils import write_nifti_img
+from utils.util import json_file_to_pyobj
+from models import get_model
 
 
 def mkdirfun(directory):
@@ -46,7 +58,6 @@ att_maps = list()
 int_imgs = list()
 subject_id = int(2)
 for epoch in epochs:
-
     # Load options and replace the epoch attribute
     json_opts = json_file_to_pyobj('/vol/biomedic2/oo2113/projects/syntAI/ukbb_pytorch/configs_final/debug_ct.json')
     json_opts = json_opts._replace(model=json_opts.model._replace(which_epoch=epoch))
