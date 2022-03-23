@@ -4,7 +4,7 @@
  * @Date: 2022-03-20 23:40:56
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-23 23:27:50
+ * @LastEditTime: 2022-03-23 23:30:10
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/README.md
  * @Description: Modify here please
  * Init from https://github.com/wulalago/AgentSPL
@@ -51,12 +51,14 @@ The data folder should be placed as following:
 ### Training
 
 ``` bash
+cd src/AgentSPL
 python train.py
 ```
 
 ### Generate the training samples for RNN(termination)
 
 ``` bash
+cd src/AgentSPL
 python create_training_sample.py
 ```
 
