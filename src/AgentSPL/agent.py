@@ -1,5 +1,17 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 23:04:38
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/agent.py
+Description: Modify here please
+Init from https://github.com/wulalago/AgentSPL
+'''
 import random
-
 import torch
 import torch.nn as nn
 import numpy as np
@@ -38,9 +50,7 @@ class Net(nn.Module):
 
 
 class Agent(object):
-    """
-    we define the Double-DQN agent
-    """
+    """we define the Double-DQN agent"""
     def __init__(self, args):
         # define the eval net and target net.
         self.eval_net = Net().cuda()
@@ -141,9 +151,7 @@ class Agent(object):
 
 
 class NaivePrioritizedBuffer(object):
-    """
-    This is the naive prioritized Buffer that borrowed from the Github (forgot the source....)
-    """
+    """This is the naive prioritized Buffer that borrowed from the Github (forgot the source....)"""
     def __init__(self, capacity, prob_alpha=0.6):
         self.prob_alpha = prob_alpha
         self.capacity = capacity

@@ -1,11 +1,19 @@
-# -*- coding: utf-8 -*-
-"""
-This is to define the environment in the reinforcement learning.
-"""
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 23:05:43
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/env.py
+Description: This is to define the environment in the reinforcement learning.
+Init from https://github.com/wulalago/AgentSPL
+'''
 import random
 import copy
 import os
-
 import gym
 import vtk
 import numpy as np
@@ -283,9 +291,7 @@ class USVolumeEnv(gym.Env):
         return volume_reader, target_plane, start_plane
 
     def metric_calculate(self):
-        """
-        calculate the distance and angle between the current plane and target plane
-        """
+        """calculate the distance and angle between the current plane and target plane"""
         current_normal, current_p = self.current_plane["normal"], self.current_plane["p"]
         target_normal, target_p = self.target_plane["normal"], self.target_plane["p"]
 
@@ -303,4 +309,3 @@ class USVolumeEnv(gym.Env):
         distance = np.abs(target_p - current_p)
 
         return float(deg_angle), float(distance)
-

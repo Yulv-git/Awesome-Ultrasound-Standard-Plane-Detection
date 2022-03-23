@@ -1,6 +1,18 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 23:07:00
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/utils.py
+Description: Modify here please
+Init from https://github.com/wulalago/AgentSPL
+'''
 import glob
 import os
-
 import numpy as np
 import cv2
 import vtk
@@ -27,7 +39,6 @@ def get_matrix(start_vector, end_vector):
     :param end_vector: the vector after rotate
     :return: the rotation matrix and quaternions
     """
-
     # transfer the vector to the numpy array
     start_vector = np.array(start_vector).astype(np.float32)
     end_vector = np.array(end_vector).astype(np.float32)
@@ -261,9 +272,7 @@ def plot(data, output_path, y_label, color='r'):
 
 
 class PlotDriver(object):
-    """
-    This is the class to plot the figure of training curve
-    """
+    """This is the class to plot the figure of training curve"""
     def __init__(self, output_path, colors, labels):
         self.a = []
         self.b = []
@@ -300,6 +309,7 @@ class PlotDriver(object):
 
 def check_dir(path):
     if not os.path.exists(path):
-        os.mkdir(path)
-
-
+        try:
+            os.mkdir(path)
+        except:
+            os.makedirs(path)

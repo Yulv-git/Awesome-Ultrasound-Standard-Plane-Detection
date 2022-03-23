@@ -1,7 +1,20 @@
+#!/usr/bin/env python
+# coding=utf-8
+'''
+Author: Shuangchi He / Yulv
+Email: yulvchi@qq.com
+Date: 2022-03-20 18:17:37
+Motto: Entities should not be multiplied unnecessarily.
+LastEditors: Shuangchi He
+LastEditTime: 2022-03-23 23:27:10
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/train.py
+Description: Modify here please
+Init from https://github.com/wulalago/AgentSPL
+'''
+import argparse
 import os
 import copy
 from itertools import count
-
 import torch
 import numpy as np
 
@@ -15,7 +28,6 @@ def train_epoch(train_list, args, agent):
     epoch_angle = AvgMeter()
     epoch_distance = AvgMeter()
     epoch_adi = AvgMeter()
-
     for train_id, train_path in enumerate(train_list):
         # define the environment
         env = USVolumeEnv(train_path, args, is_train=True)
@@ -67,7 +79,6 @@ def val_epoch(val_list, args, agent):
     epoch_angle = AvgMeter()
     epoch_distance = AvgMeter()
     epoch_adi = AvgMeter()
-
     for val_id, val_path in enumerate(val_list[:20]):
         # define the environment
         env = USVolumeEnv(val_path, args, is_train=False)
@@ -141,44 +152,23 @@ def main(args):
 
 
 if __name__ == '__main__':
+    parse = argparse.ArgumentParser(description='Training')
+    # define path
+    parse.add_argument('--data_path', type=str, default='./template_data/subjects', help="data path")
+    parse.add_argument('--output_path', type=str, default='./output', help="")
+    parse.add_argument('--list_path', type=str, default='./template_data', help="")
+    # define default
+    parse.add_argument('--gpu_id', type=int, default=0, help="gpu id")
+    parse.add_argument('--num_epoch', type=int, default=100, help="total epoch")
+    parse.add_argument('--max_step', type=int, default=75, help="max steps")
+    # define training
+    parse.add_argument('--batch_size', type=int, default=4, help="batch size")
+    parse.add_argument('--target_step_counter', type=int, default=1500, help="target net weight update term")
+    parse.add_argument('--lr', type=float, default=5e-5, help="weight decay")
+    parse.add_argument('--weight_decay', type=float, default=1e-4, help="weight decay")
+    parse.add_argument('--gamma', type=float, default=0.95, help="reward decay")
+    parse.add_argument('--memory_capacity', type=int, default=15000, help="memory capacity")
+    parse.add_argument('--epsilon', type=float, default=0.6, help="epsilon for the greedy")
+    args = parse.parse_args()
 
-    class Parser(object):
-        """
-        define the option of the training
-        """
-        def __init__(self):
-            # =============== define environment
-
-            # =============== define training
-            # batch size, INT
-            self.batch_size = 4
-            # target net weight update term, INT
-            self.target_step_counter = 1500
-            # learning rate, FLOAT
-            self.lr = 5e-5
-            # weight decay, FLOAT
-            self.weight_decay = 1e-4
-            # reward decay, FLOAT
-            self.gamma = 0.95
-            # memory capacity, INT
-            self.memory_capacity = 15000
-            # epsilon for the greedy, FLOAT
-            self.epsilon = 0.6
-
-            # =============== define default
-            # gpu id
-            self.gpu_id = 0
-            # total epoch
-            self.num_epoch = 100
-            # max steps
-            self.max_step = 75
-
-            # =============== define path
-            # data path
-            self.data_path = "template_data/subjects"
-            self.output_path = "output"
-            self.list_path = "template_data"
-
-    parser = Parser()
-
-    main(parser)
+    main(args)
