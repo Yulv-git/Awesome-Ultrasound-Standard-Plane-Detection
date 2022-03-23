@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-22 20:28:47
+ * @LastEditTime: 2022-03-23 14:44:54
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -46,6 +46,7 @@ pass
 # 4. Practice
 
 - SonoNet [infer.py](./src/SonoNet/infer.py)
+- ITN [train.py](./src/ITN/train.py) [infer.py](./src/ITN/infer.py)
 
 # 5. Acknowledgements
 
