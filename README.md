@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-24 15:39:56
+ * @LastEditTime: 2022-03-24 16:47:36
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -29,10 +29,11 @@ A curated list of awesome ultrasound standard plane detection.
 | :------------ | :-----: | :---- |
 | Automated Selection of Standardized Planes from Ultrasound Volume [[MICCAI-MLMI 2011]](https://link.springer.com/content/pdf/10.1007/978-3-642-24319-6_5.pdf) | | Haar, AdaBoost, AS Detection, SP Classification |
 | Learning-based scan plane identification from fetal head ultrasound images [[Medical Imaging 2012]](https://sci-hub.se/10.1117/12.911516) | | Template Matching, Active Appearance Models, AS Detection, LDA, SP Classification |
+| Intelligent Scanning: Automated Standard Plane Selection and Biometric Measurement of Early Gestational Sac in Routine Ultrasound Examination [[Medical Physics 2012]](https://aapm.onlinelibrary.wiley.com/doi/epdf/10.1118/1.4736415?saml_referrer) | | Sliding Window, Haar, Cascade AdaBoost, AS Localization, Relative Position, Local Context Information, SP Classification |
 | SonoNet: Real-Time Detection and Localisation of Fetal Standard Scan Planes in Freehand Ultrasound [[TMI 2017]](https://arxiv.org/pdf/1612.05601v2.pdf) [[Official Code]](https://github.com/baumgach/SonoNet-weights) [[Third-Party Code]](https://github.com/rdroste/SonoNet_PyTorch) | SonoNet | CNN, SP Classification, Weakly Supervision, AS Localization |
 | Standard Plane Detection in 3D Fetal Ultrasound Using an Iterative Transformation Network [[MICCAI 2018]](https://arxiv.org/pdf/1806.07486v2.pdf) [[Official Code]](https://github.com/yuanwei1989/plane-detection) | ITN | CNN, SP Localization |
 | Attention-Gated Networks for Improving Ultrasound Scan Plane Detection [[MIDL 2018]](https://arxiv.org/pdf/1804.05338v1.pdf) [[Official Code]](https://github.com/ozan-oktay/Attention-Gated-Networks) | AG_SonoNet | CNN, Attention, SP Classification, Weakly Supervision, AS Localization |
-| Agent with Warm Start and Adaptive Dynamic Termination for Plane Localization in 3D Ultrasound [[TMI 2021]](https://arxiv.org/pdf/2103.14502v1.pdf) [[Official Code]](https://github.com/wulalago/AgentSPL) | AgentSPL | Reinforcement Learning, CNN, SP Localization, Landmark Alignment, RNN |
+| Agent with Warm Start and Adaptive Dynamic Termination for Plane Localization in 3D Ultrasound [[TMI 2021]](https://arxiv.org/pdf/2103.14502v1.pdf) [[Official Code]](https://github.com/wulalago/AgentSPL) | AgentSPL | Landmark Alignment, Reinforcement Learning, CNN, SP Localization, RNN |
 
 Tags:
 Standard Plane --> SP | Anatomical Structure --> AS
@@ -50,4 +51,4 @@ pass
 
 # 4. Acknowledgements
 
-Thanks to the contributors of all the above papers, code, reviews, and other resources.
+Thanks to the contributors of all the above papers, code, and other resources.
