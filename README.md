@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-26 12:22:27
+ * @LastEditTime: 2022-03-26 16:08:34
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -37,9 +37,11 @@ A curated list of awesome ultrasound standard plane detection.
 | Diagnostic Plane Extraction from 3D Parametric Surface of the Fetal Cranium [[MIUA 2014]](http://www.bmva.org/miua/2014/miua-14-04.pdf) | - | Topological Manifold Representation, Landmark Alignment, 3D Parametric Surface Model, SP Localization |
 | A Constrained Regression Forests Solution to 3D Fetal Ultrasound Plane Localization for Longitudinal Analysis of Brain Growth and Maturation [[MICCAI-MLMI 2014]](https://link.springer.com/content/pdf/10.1007/978-3-319-10581-9_14.pdf) | CRF-FA-Dist | Informative Voxels, Reference Plane, Constrained Regression Forest, SP Localization |
 | Automatic Recognition of Fetal Facial Standard Plane in Ultrasound Image via Fisher Vector [[PLOS ONE 2015]](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0121838&type=printable) | FV-Chi2-SDCA | Spatial Stacking, Densely Sampled Root Scale Invariant Feature Transform, Gaussian Mixture Model, Fisher Vector, Multilayer Fisher Network, SVM, SP Classification |
-| Plane Localization in 3-D Fetal Neurosonography for Longitudinal Analysis of the Developing Brain [[JBHI 2015]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7110508) | CRF-FA-Dist-M | Informative Voxels, Manual Reference Plane, Constrained Regression Forest, SP Localization|
+| Plane Localization in 3-D Fetal Neurosonography for Longitudinal Analysis of the Developing Brain [[JBHI 2015]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7110508) | CRF-FA-Dist-M | Informative Voxels, Manual Reference Plane, Constrained Regression Forest, SP Localization |
+| Standard Plane Localization in Fetal Ultrasound via Domain Transferred Deep Neural Networks [[JBHI 2015]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7090943) | T-CNN | Knowledge Transfer, CNN, SP Localization |
+| Automatic Fetal Ultrasound Standard Plane Detection Using Knowledge Transferred Recurrent Neural Networks [[MICCAI 2015]](https://link.springer.com/content/pdf/10.1007/978-3-319-24553-9_62.pdf) | T-RNN | Knowledge Transfer, CNN, Joint Learning, Spatio-temporal Feature, RNN, SP Classification |
 | SonoNet: Real-Time Detection and Localisation of Fetal Standard Scan Planes in Freehand Ultrasound [[TMI 2017]](https://arxiv.org/pdf/1612.05601v2.pdf) [[Official Code]](https://github.com/baumgach/SonoNet-weights) [[Third-Party Code]](https://github.com/rdroste/SonoNet_PyTorch) | SonoNet | CNN, SP Classification, Weakly Supervision, AS Localization |
-| Standard Plane Detection in 3D Fetal Ultrasound Using an Iterative Transformation Network [[MICCAI 2018]](https://arxiv.org/pdf/1806.07486v2.pdf) [[Official Code]](https://github.com/yuanwei1989/plane-detection) | ITN | CNN, SP Localization |
+| Standard Plane Detection in 3D Fetal Ultrasound Using an Iterative Transformation Network [[MICCAI 2018]](https://arxiv.org/pdf/1806.07486v2.pdf) [[Official Code]](https://github.com/yuanwei1989/plane-detection) | ITN | CNN, Rigid Transformation, SP Localization |
 | Attention-Gated Networks for Improving Ultrasound Scan Plane Detection [[MIDL 2018]](https://arxiv.org/pdf/1804.05338v1.pdf) [[Official Code]](https://github.com/ozan-oktay/Attention-Gated-Networks) | AG-SonoNet | CNN, Attention, SP Classification, Weakly Supervision, AS Localization |
 | Recognition of Fetal Facial Ultrasound Standard Plane Based on Texture Feature Fusion [[CMMM 2021]](https://downloads.hindawi.com/journals/cmmm/2021/6656942.pdf) | LH-SVM | Local Binary Pattern, Histogram of Oriented Gradient, Feature Fusion, SVM, SP Classification |
 | Agent with Warm Start and Adaptive Dynamic Termination for Plane Localization in 3D Ultrasound [[TMI 2021]](https://arxiv.org/pdf/2103.14502v1.pdf) [[Official Code]](https://github.com/wulalago/AgentSPL) | AgentSPL | Landmark Alignment, Reinforcement Learning, CNN, SP Localization, RNN |
