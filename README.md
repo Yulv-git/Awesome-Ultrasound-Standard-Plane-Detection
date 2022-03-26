@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-26 17:45:40
+ * @LastEditTime: 2022-03-26 21:33:07
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -48,8 +48,14 @@ A curated list of awesome ultrasound standard plane detection.
 | Attention-Gated Networks for Improving Ultrasound Scan Plane Detection [[MIDL 2018]](https://arxiv.org/pdf/1804.05338v1.pdf) [[Official Code]](https://github.com/ozan-oktay/Attention-Gated-Networks) | AG-SonoNet | CNN, Attention, SP Classification, Weakly Supervision, AS Localization |
 | Standard Plane Localisation in 3D Fetal Ultrasound Using Network with Geometric and Image Loss [[MIDL 2018]](https://openreview.net/pdf?id=BykcN8siz) | - | CNN, Rigid Transformation, Geometric Loss, Image Loss, SP Localization |
 | Standard Plane Detection in 3D Fetal Ultrasound Using an Iterative Transformation Network [[MICCAI 2018]](https://arxiv.org/pdf/1806.07486v2.pdf) [[Official Code]](https://github.com/yuanwei1989/plane-detection) | ITN | CNN, Rigid Transformation, SP Localization |
+| Automatic and Efficient Standard Plane Recognition in Fetal Ultrasound Images via Multi-scale Dense Networks [[MICCAI-DATRA/PIPPI 2018]](https://link.springer.com/content/pdf/10.1007/978-3-030-00807-9_16.pdf) | MSDNet | Multi-scale, Cascade, Dense Connection, CNN, SP Classification |
+| SPRNet: Automatic Fetal Standard Plane Recognition Network for Ultrasound Images [[ MICCAI-PIPPI/SUSI 2019]](https://link.springer.com/content/pdf/10.1007/978-3-030-32875-7_5.pdf) | SPRNet | CNN, Weight-share, Transfer Learning, SP Classification |
+| Deep Learning-Based Methodology for Recognition of Fetal Brain Standard Scan Planes in 2D Ultrasound Images [[IEEE Access 2019]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8887441) | - | Data Augmentation, DCNN, Domain Transfer, SP Classification |
+| Standard Plane Identification in Fetal Brain Ultrasound Scans Using A Differential Convolutional Neural Network [[IEEE Access 2020]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9084099) | Different-CNN | Differential Operator, Differential CNN, SP Classification |
+| Evaluation of Deep Convolutional Neural Networks for Automatic Classification of Common Maternal Fetal Ultrasound Planes [[Scientific Reports 2020]](https://www.nature.com/articles/s41598-020-67076-5.pdf) | - | Data Augmentation, PCA, Hog, Boosting, VGG, MobileNet, Inception-v3, ResNet, SENet, SE-ResNet, DenseNet, SP Classification |
 | Recognition of Fetal Facial Ultrasound Standard Plane Based on Texture Feature Fusion [[CMMM 2021]](https://downloads.hindawi.com/journals/cmmm/2021/6656942.pdf) | LH-SVM | Local Binary Pattern, Histogram of Oriented Gradient, Feature Fusion, SVM, SP Classification |
-| Agent with Warm Start and Adaptive Dynamic Termination for Plane Localization in 3D Ultrasound [[TMI 2021]](https://arxiv.org/pdf/2103.14502v1.pdf) [[Official Code]](https://github.com/wulalago/AgentSPL) | AgentSPL | Landmark Alignment, Reinforcement Learning, CNN, SP Localization, RNN |
+| Agent with Warm Start and Adaptive Dynamic Termination for Plane Localization in 3D Ultrasound [[TMI 2021]](https://arxiv.org/pdf/2103.14502v1.pdf) [[Official Code]](https://github.com/wulalago/AgentSPL) | AgentSPL | Landmark Alignment, Reinforcement Learning, CNN, RNN, SP Localization |
+| Automatic Fetal Ultrasound Standard Plane Recognition Based on Deep Learning and IIoT [[Transactions on Industrial Informatics 2021]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9389489) | FUSPR | CNN, RNN, Spatial-temporal Feature, SP Classification |
 
 Tags:
 Standard Plane --> SP | Anatomical Structure --> AS
