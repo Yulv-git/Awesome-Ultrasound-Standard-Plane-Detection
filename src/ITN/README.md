@@ -4,10 +4,10 @@
  * @Date: 2022-03-18 23:10:52
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-23 14:32:35
+ * @LastEditTime: 2022-03-27 21:43:23
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/ITN/README.md
  * @Description: Modify here please
- * Init from https://github.com/yuanwei1989/plane-detection
+ * Init from https://github.com/yuanwei1989/plane-detection fe5c97ae040442d759c26d0551104418f33be5f6
 -->
 
 # Standard Plane Localisation in 3D Ultrasound

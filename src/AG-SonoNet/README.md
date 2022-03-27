@@ -4,10 +4,10 @@
  * @Date: 2022-03-20 18:17:37
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-23 22:52:31
- * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/README.md
+ * @LastEditTime: 2022-03-27 21:42:35
+ * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/README.md
  * @Description: Modify here please
- * Init from https://github.com/ozan-oktay/Attention-Gated-Networks
+ * Init from https://github.com/ozan-oktay/Attention-Gated-Networks eee4881fdc31920efd873773e0b744df8dacbfb6
 -->
 
 # Attention Gated Networks <br /> (Image Classification & Segmentation)

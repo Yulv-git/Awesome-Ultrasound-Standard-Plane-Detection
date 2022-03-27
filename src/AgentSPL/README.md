@@ -4,10 +4,10 @@
  * @Date: 2022-03-20 23:40:56
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-23 23:30:10
+ * @LastEditTime: 2022-03-27 21:42:59
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/README.md
  * @Description: Modify here please
- * Init from https://github.com/wulalago/AgentSPL
+ * Init from https://github.com/wulalago/AgentSPL c0b9468da7a20a307c38962bd8145e1df21bdf8b
 -->
 
 # Reinforcement Learning for Standard Plane Localization in 3D US

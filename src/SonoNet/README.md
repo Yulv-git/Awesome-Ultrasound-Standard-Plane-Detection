@@ -4,10 +4,10 @@
  * @Date: 2022-03-18 10:33:37
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-22 20:28:24
+ * @LastEditTime: 2022-03-27 21:43:43
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/SonoNet/README.md
  * @Description: PyTorch implementation of SonoNet.
- * Init from https://github.com/rdroste/SonoNet_PyTorch
+ * Init from https://github.com/rdroste/SonoNet_PyTorch 58e9f636be6fbfd87fbd1a27520b872828afa218
 -->
 
 # PyTorch SonoNet
