@@ -130,3 +130,8 @@ dmypy.json
 
 # model weight files
 *.pth
+
+# dataset
+*.zip
+*/FETAL_PLANES_ZENODO/
+*/FETAL_PLANES_DB/Images/

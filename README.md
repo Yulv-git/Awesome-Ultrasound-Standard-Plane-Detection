@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-29 10:02:49
+ * @LastEditTime: 2022-03-29 21:00:33
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -17,9 +17,10 @@ A curated list of awesome ultrasound standard plane detection.
 ---
 
 - [1. Papers](#1-papers)
-- [2. Others](#2-others)
-- [3. Practice](#3-practice)
-- [4. Acknowledgements](#4-acknowledgements)
+- [2. Public Datasets](#2-public-datasets)
+- [3. Others](#3-others)
+- [4. Practice](#4-practice)
+- [5. Acknowledgements](#5-acknowledgements)
 
 ---
 
@@ -69,17 +70,27 @@ A curated list of awesome ultrasound standard plane detection.
 Tags:
 Standard Plane --> SP | Anatomical Structure --> AS
 
-# 2. Others
+# 2. Public Datasets
+
+- [FETAL_PLANES_DB: Common maternal-fetal ultrasound images](https://zenodo.org/record/3904280#)
+  - 6 Classes:
+    - Fetal Anatomical Planes: Abdomen, Brain (Further categorized into the 3 most common fetal brain planes: Trans-thalamic, Trans-cerebellum, Trans-ventricular), Femur, Thorax.
+    - Mother’s Cervix.
+    - General Category: Including any other less common image plane.
+  - Meta Information: Patient number, US machine, Operator.
+  - Training-test split used in the Nature Sci Rep paper.
+
+# 3. Others
 
 pass
 
-# 3. Practice
+# 4. Practice
 
 - [SonoNet](./src/SonoNet/): [infer.py](./src/SonoNet/infer.py)
 - [ITN](./src/ITN/): [train.py](./src/ITN/train.py), [infer.py](./src/ITN/infer.py)
 - [AG-SonoNet](./src/AG-SonoNet/)
 - [AgentSPL](./src/AgentSPL/)
 
-# 4. Acknowledgements
+# 5. Acknowledgements
 
-Thanks to the contributors of all the above papers, code, and other resources.
+Thanks to the contributors of all the above papers, code, public datasets, and other resources.
