@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-28 22:56:50
+ * @LastEditTime: 2022-03-29 10:02:49
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -64,7 +64,7 @@ A curated list of awesome ultrasound standard plane detection.
 | Searching Collaborative Agents for Multi-plane Localization in 3D Ultrasound [[MIA 2021]](https://www.sciencedirect.com/science/article/pii/S1361841521001651/pdfft?md5=90294c4378d07e341fe92307a01d19e3&pid=1-s2.0-S1361841521001651-main.pdf) | MARL | Multi-agent, Reinforcement Learning, RNN, NAS, SP Localization |
 | Automatic Fetal Ultrasound Standard Plane Recognition Based on Deep Learning and IIoT [[Transactions on Industrial Informatics 2021]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9389489) | FUSPR | CNN, RNN, Spatial-temporal Feature, SP Classification |
 | Automatic quality assessment for 2D fetal sonographic standard plane based on multitask learning [[Medicine 2021]](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7850658/pdf/medi-100-e24427.pdf) | - | CNN, AS Classification, Object Detection, AS Localization, SP Quality Control |
-| Statistical Dependency Guided Contrastive Learning for Multiple Labeling in Prenatal Ultrasound [[MICCAI-MLMI 2021]](https://link.springer.com/content/pdf/10.1007/978-3-030-87589-3_20.pdf) | MLL-GCN-CRC | Word Embedding, GCN, CNN, Cluster Relabeled Contrastive Learning, Multi-label, AS Classification, SP Classification |
+| Statistical Dependency Guided Contrastive Learning for Multiple Labeling in Prenatal Ultrasound [[MICCAI-MLMI 2021]](https://arxiv.org/pdf/2108.05055) | MLL-GCN-CRC | Word Embedding, GCN, CNN, Cluster Relabeled Contrastive Learning, Multi-label, AS Classification, SP Classification |
 
 Tags:
 Standard Plane --> SP | Anatomical Structure --> AS
