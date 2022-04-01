@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-04-01 11:34:48
+ * @LastEditTime: 2022-04-01 21:56:38
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -18,9 +18,8 @@ A curated list of awesome ultrasound standard plane detection.
 
 - [1. Papers](#1-papers)
 - [2. Public Datasets](#2-public-datasets)
-- [3. Others](#3-others)
-- [4. Practice](#4-practice)
-- [5. Acknowledgements](#5-acknowledgements)
+- [3. Practice](#3-practice)
+- [4. Acknowledgements](#4-acknowledgements)
 
 ---
 
@@ -81,17 +80,13 @@ Standard Plane --> SP | Anatomical Structure --> AS
   - Meta Information: Patient number, US machine, Operator.
   - Training-test split used in the Nature Sci Rep paper.
 
-# 3. Others
-
-pass
-
-# 4. Practice
+# 3. Practice
 
 - [SonoNet](./src/SonoNet/): [infer.py](./src/SonoNet/infer.py)
 - [ITN](./src/ITN/): [train.py](./src/ITN/train.py), [infer.py](./src/ITN/infer.py)
 - [AG-SonoNet](./src/AG-SonoNet/)
 - [AgentSPL](./src/AgentSPL/)
 
-# 5. Acknowledgements
+# 4. Acknowledgements
 
 Thanks to the contributors of all the above papers, code, public datasets, and other resources.

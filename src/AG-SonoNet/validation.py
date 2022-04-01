@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 20:13:41
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/validation.py
+LastEditTime: 2022-04-01 21:59:54
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/validation.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -30,9 +30,9 @@ def mkdirfun(directory):
         os.makedirs(directory)
 
 
-def validation(json_name):
+def validation(args):
     # Load options
-    json_opts = json_file_to_pyobj(json_name)
+    json_opts = json_file_to_pyobj(args.config)
     train_opts = json_opts.training
 
     # Setup the NN Model
@@ -97,4 +97,4 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--config', help='testing config file', required=True)
     args = parser.parse_args()
 
-    validation(args.config)
+    validation(args)

@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 22:22:49
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/test_classification.py
+LastEditTime: 2022-04-01 22:47:44
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/test_classification.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -33,6 +33,7 @@ class HiddenPrints:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         sys.stdout = self._original_stdout
+
 
 class StratifiedSampler(object):
     """Stratified Sampling
@@ -83,13 +84,9 @@ class StratifiedSampler(object):
         return len(self.class_vector)
 
 
-def test(arguments):
-    # Parse input arguments
-    json_filename = arguments.config
-    network_debug = arguments.debug
-
+def test(args):
     # Load options
-    json_opts = json_file_to_pyobj(json_filename)
+    json_opts = json_file_to_pyobj(args.config)
     train_opts = json_opts.training
 
     # Architecture type
@@ -104,7 +101,7 @@ def test(arguments):
     with HiddenPrints():
         model = get_model(json_opts.model)
 
-    if network_debug:
+    if args.debug:
         print('# of pars: ', model.get_number_parameters())
         print('fp time: {0:.8f} sec\tbp time: {1:.8f} sec per sample'.format(*model.get_fp_bp_time2((1,1,224,288))))
         exit()
@@ -168,7 +165,7 @@ def test(arguments):
 
     error_logger.reset()
 
-    if arguments.time:
+    if args.time:
         print('# of pars: ', model.get_number_parameters())
         print('fp time: {0:.8f} sec\tbp time: {1:.8f} sec per sample'.format(*model.get_fp_bp_time2((1,1,224,288))))
         

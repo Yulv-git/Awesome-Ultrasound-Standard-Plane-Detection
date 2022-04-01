@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 21:18:50
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks/utils.py
+LastEditTime: 2022-04-01 22:53:32
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/models/networks/utils.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -312,6 +312,7 @@ class SqEx(nn.Module):
         y = x * y
         return y
 
+
 class UnetUp3_SqEx(nn.Module):
     def __init__(self, in_size, out_size, is_deconv, is_batchnorm):
         super(UnetUp3_SqEx, self).__init__()
@@ -337,6 +338,7 @@ class UnetUp3_SqEx(nn.Module):
         concat = torch.cat([outputs1, outputs2], 1)
         gated  = self.sqex(concat)
         return self.conv(gated)
+
 
 class residualBlock(nn.Module):
     expansion = 1

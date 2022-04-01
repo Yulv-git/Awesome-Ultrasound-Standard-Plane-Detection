@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 22:27:04
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/dataio/transformation/transforms.py
+LastEditTime: 2022-04-01 22:51:01
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/dataio/transformation/transforms.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -145,7 +145,6 @@ class Transformations:
                                      ])
 
         return {'test': test_transform}
-
 
     def ultrasound_transform(self):
         train_transform = ts.Compose([ts.ToTensor(),

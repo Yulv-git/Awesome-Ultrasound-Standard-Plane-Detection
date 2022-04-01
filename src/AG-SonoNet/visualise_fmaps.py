@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 20:09:17
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/visualise_fmaps.py
+LastEditTime: 2022-04-01 22:49:27
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/visualise_fmaps.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -46,6 +46,7 @@ def plotNNFilter(units, figure_id, interp='bilinear', colormap=cm.jet, colormap_
 
     plt.subplots_adjust(wspace=0, hspace=0)
     plt.tight_layout()
+
 
 # Load options
 json_opts = json_file_to_pyobj('/vol/biomedic2/oo2113/projects/syntAI/ukbb_pytorch/configs_final/debug_ct.json')

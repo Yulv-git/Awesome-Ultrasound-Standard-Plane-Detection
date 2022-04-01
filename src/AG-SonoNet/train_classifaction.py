@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 22:22:21
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/train_classifaction.py
+LastEditTime: 2022-04-01 17:49:53
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/train_classifaction.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -85,13 +85,9 @@ def check_warm_start(epoch, model, train_opts):
             adjust_learning_rate(model.optimizers[0], model.opts.lr_rate)
 
 
-def train(arguments):
-    # Parse input arguments
-    json_filename = arguments.config
-    network_debug = arguments.debug
-
+def train(args):
     # Load options
-    json_opts = json_file_to_pyobj(json_filename)
+    json_opts = json_file_to_pyobj(args.config)
     train_opts = json_opts.training
 
     # Architecture type
@@ -104,7 +100,7 @@ def train(arguments):
 
     # Setup the NN Model
     model = get_model(json_opts.model)
-    if network_debug:
+    if args.debug:
         print('# of pars: ', model.get_number_parameters())
         print('fp time: {0:.3f} sec\tbp time: {1:.3f} sec per sample'.format(*model.get_fp_bp_time()))
         exit()

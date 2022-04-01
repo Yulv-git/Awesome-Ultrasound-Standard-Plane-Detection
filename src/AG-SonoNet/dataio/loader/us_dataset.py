@@ -6,13 +6,14 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 20:26:21
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/dataio/loader/us_dataset.py
+LastEditTime: 2022-04-01 22:30:17
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/dataio/loader/us_dataset.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
 import torch
 import torch.utils.data as data
+from torch.utils.data import DataLoader, sampler
 import h5py
 import numpy as np
 import datetime
@@ -81,8 +82,7 @@ class UltraSoundDataset(data.Dataset):
         return len(self.images)
 
 
-# if __name__ == '__main__':
-#     dataset = UltraSoundDataset("/vol/bitbucket/js3611/data_ultrasound/preproc_combined_inp_224x288.hdf5",'test')
+if __name__ == '__main__':
+    dataset = UltraSoundDataset("/vol/bitbucket/js3611/data_ultrasound/preproc_combined_inp_224x288.hdf5",'test')
 
-#     from torch.utils.data import DataLoader, sampler
-#     ds = DataLoader(dataset=dataset, num_workers=1, batch_size=2)
+    ds = DataLoader(dataset=dataset, num_workers=1, batch_size=2)

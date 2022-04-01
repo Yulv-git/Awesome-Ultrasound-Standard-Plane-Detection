@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 21:09:14
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/utils.py
+LastEditTime: 2022-04-01 22:54:46
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/models/utils.py
 Description: Misc Utility functions
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -70,7 +70,6 @@ def poly_lr_scheduler(optimizer, init_lr, iter, lr_decay_iter=1, max_iter=30000,
         :param lr_decay_iter how frequently decay occurs, default is 1
         :param max_iter is number of maximum iterations
         :param power is a polymomial power
-
     """
     if iter % lr_decay_iter or iter > max_iter:
         return optimizer
