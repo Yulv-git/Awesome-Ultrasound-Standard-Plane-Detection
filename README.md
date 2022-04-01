@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-31 10:57:50
+ * @LastEditTime: 2022-04-01 11:34:48
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -60,7 +60,7 @@ A curated list of awesome ultrasound standard plane detection.
 | Automatic Fetal Middle Sagittal Plane Detection in Ultrasound Using Generative Adversarial Network [[Diagnostics 2020]](https://www.mdpi.com/2075-4418/11/1/21/pdf) | - | Segmentation, Object Detection, Seed Point, GAN, SP Localization |
 | Recognition of Fetal Facial Ultrasound Standard Plane Based on Texture Feature Fusion [[CMMM 2021]](https://downloads.hindawi.com/journals/cmmm/2021/6656942.pdf) | LH-SVM | Local Binary Pattern, Histogram of Oriented Gradient, Feature Fusion, SVM, SP Classification |
 | Principled Ultrasound Data Augmentation for Classification of Standard Planes [[IPMI 2021]](https://link.springer.com/content/pdf/10.1007/978-3-030-78191-0_56.pdf) | - | Data Augmentation, Augmentation Policy Search, CNN, SP Classification |
-| Generative Adversarial Networks to Improve Fetal Brain Fine-Grained Plane Classification [[Sensors 2021]](https://www.mdpi.com/1424-8220/21/23/7975/pdf) [[Official Code]](https://github.com/albertoMontero/stylegan2-ada) | - | GAN, Data Augmentation, CNN, SP Classification |
+| Generative Adversarial Networks to Improve Fetal Brain Fine-Grained Plane Classification [[Sensors 2021]](https://www.mdpi.com/1424-8220/21/23/7975/pdf) | - | GAN, Data Augmentation, CNN, SP Classification |
 | Agent with Warm Start and Adaptive Dynamic Termination for Plane Localization in 3D Ultrasound [[TMI 2021]](https://arxiv.org/pdf/2103.14502v1.pdf) [[Official Code]](https://github.com/wulalago/AgentSPL) | AgentSPL | Landmark Alignment, Reinforcement Learning, CNN, RNN, SP Localization |
 | Autonomous Navigation of An Ultrasound Probe Towards Standard Scan Planes with Deep Reinforcement Learning [[ICRA 2021]](https://arxiv.org/pdf/2103.00718) | SonoRL | Reinforcement Learning, Probe Navigation, Confidence-aware Agent, CNN, SP Localization |
 | Searching Collaborative Agents for Multi-plane Localization in 3D Ultrasound [[MIA 2021]](https://www.sciencedirect.com/science/article/pii/S1361841521001651/pdfft?md5=90294c4378d07e341fe92307a01d19e3&pid=1-s2.0-S1361841521001651-main.pdf) | MARL | Multi-agent, Reinforcement Learning, RNN, NAS, SP Localization |
