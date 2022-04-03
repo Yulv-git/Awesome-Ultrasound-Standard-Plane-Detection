@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-04-03 16:22:04
+ * @LastEditTime: 2022-04-03 18:15:58
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -55,7 +55,7 @@ A curated list of awesome ultrasound standard plane detection.
 | SPRNet: Automatic Fetal Standard Plane Recognition Network for Ultrasound Images [[MICCAI-PIPPI/SUSI 2019]](https://link.springer.com/content/pdf/10.1007/978-3-030-32875-7_5.pdf) | SPRNet | CNN, Weight-share, Transfer Learning, SP Classification |
 | Deep Learning-Based Methodology for Recognition of Fetal Brain Standard Scan Planes in 2D Ultrasound Images [[IEEE Access 2019]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8887441) | - | Data Augmentation, DCNN, Domain Transfer, SP Classification |
 | Standard Plane Identification in Fetal Brain Ultrasound Scans Using A Differential Convolutional Neural Network [[IEEE Access 2020]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9084099) | Different-CNN | Differential Operator, Differential CNN, SP Classification |
-| Evaluation of Deep Convolutional Neural Networks for Automatic Classification of Common Maternal Fetal Ultrasound Planes [[Scientific Reports 2020]](https://www.nature.com/articles/s41598-020-67076-5.pdf) | - | Data Augmentation, PCA, Hog, Boosting, VGG, MobileNet, Inception-v3, ResNet, SENet, SE-ResNet, DenseNet, SP Classification |
+| Evaluation of Deep Convolutional Neural Networks for Automatic Classification of Common Maternal Fetal Ultrasound Planes [[Scientific Reports 2020]](https://www.nature.com/articles/s41598-020-67076-5.pdf) [[Third-Party Code]](https://github.com/Oussamayousre/automatic-classification-of-common-maternal-fetal-ultrasound-planes) | - | Data Augmentation, PCA, Hog, Boosting, VGG, MobileNet, Inception-v3, ResNet, SENet, SE-ResNet, DenseNet, SP Classification |
 | Automatic Fetal Middle Sagittal Plane Detection in Ultrasound Using Generative Adversarial Network [[Diagnostics 2020]](https://www.mdpi.com/2075-4418/11/1/21/pdf) | - | Segmentation, Object Detection, Seed Point, GAN, SP Localization |
 | Recognition of Fetal Facial Ultrasound Standard Plane Based on Texture Feature Fusion [[CMMM 2021]](https://downloads.hindawi.com/journals/cmmm/2021/6656942.pdf) | LH-SVM | Local Binary Pattern, Histogram of Oriented Gradient, Feature Fusion, SVM, SP Classification |
 | Principled Ultrasound Data Augmentation for Classification of Standard Planes [[IPMI 2021]](https://link.springer.com/content/pdf/10.1007/978-3-030-78191-0_56.pdf) | - | Data Augmentation, Augmentation Policy Search, CNN, SP Classification |
@@ -86,6 +86,7 @@ Standard Plane --> SP | Anatomical Structure --> AS
 - [ITN](./src/ITN/): [train.py](./src/ITN/train.py), [infer.py](./src/ITN/infer.py)
 - [AG-SonoNet](./src/AG-SonoNet/): [train_FPD.py](./src/AG-SonoNet/train_FPD.py)
 - [AgentSPL](./src/AgentSPL/)
+- [DCNN-MF-SP](./src/DCNN-MF-SP/)
 
 # 4. Acknowledgements
 
