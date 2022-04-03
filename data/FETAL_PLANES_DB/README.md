@@ -4,7 +4,7 @@
  * @Date: 2022-03-29 22:07:29
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-03-29 22:12:23
+ * @LastEditTime: 2022-04-03 22:54:49
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/data/FETAL_PLANES_DB/README.md
  * @Description: Fetal_Planes_DB
  * Init from https://zenodo.org/record/3904280# FETAL_PLANES_ZENODO.zip/README.md
@@ -35,3 +35,9 @@ If you find this dataset useful, please cite:
       doi="10.1038/s41598-020-67076-5",
       year={2020}
     } 
+
+## Download
+
+``` bash
+bash ./download.sh
+```
