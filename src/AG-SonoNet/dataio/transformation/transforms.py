@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-01 22:51:01
+LastEditTime: 2022-04-03 12:07:41
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/dataio/transformation/transforms.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
@@ -40,7 +40,8 @@ class Transformations:
             'hms_sax':  self.hms_sax_transform,
             'test_sax': self.test_3d_sax_transform,
             'acdc_sax': self.cmr_3d_sax_transform,
-            'us':       self.ultrasound_transform,
+            'us': self.ultrasound_transform,
+            'us_FPD': self.ultrasound_transform_FPD,
         }[self.name]()
 
     def print(self):
@@ -147,6 +148,28 @@ class Transformations:
         return {'test': test_transform}
 
     def ultrasound_transform(self):
+        train_transform = ts.Compose([ts.ToTensor(),
+                                      ts.TypeCast(['float']),
+                                      ts.AddChannel(axis=0),
+                                      ts.SpecialCrop(self.patch_size,0),
+                                      ts.RandomFlip(h=True, v=False, p=self.random_flip_prob),
+                                      ts.RandomAffine(rotation_range=self.rotate_val,
+                                                      translation_range=self.shift_val,
+                                                      zoom_range=self.scale_val,
+                                                      interp=('bilinear')),
+                                      ts.StdNormalize(),
+                                ])
+
+        valid_transform = ts.Compose([ts.ToTensor(),
+                                      ts.TypeCast(['float']),
+                                      ts.AddChannel(axis=0),
+                                      ts.SpecialCrop(self.patch_size,0),
+                                      ts.StdNormalize(),
+                                ])
+
+        return {'train': train_transform, 'valid': valid_transform}
+    
+    def ultrasound_transform_FPD(self):
         train_transform = ts.Compose([ts.ToTensor(),
                                       ts.TypeCast(['float']),
                                       ts.AddChannel(axis=0),

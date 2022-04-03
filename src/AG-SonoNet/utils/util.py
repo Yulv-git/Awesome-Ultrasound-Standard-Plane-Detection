@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 21:12:58
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/utils/util.py
+LastEditTime: 2022-04-02 17:26:37
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/utils/util.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -100,8 +100,12 @@ def mkdir(path):
 
 
 def json_file_to_pyobj(filename):
-    def _json_object_hook(d): return collections.namedtuple('X', d.keys())(*d.values())
-    def json2obj(data): return json.loads(data, object_hook=_json_object_hook)
+    def _json_object_hook(d):
+        return collections.namedtuple('X', d.keys())(*d.values())
+
+    def json2obj(data):
+        return json.loads(data, object_hook=_json_object_hook)
+
     return json2obj(open(filename).read())
 
 

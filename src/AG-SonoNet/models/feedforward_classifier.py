@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 21:05:56
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/feedforward_classifier.py
+LastEditTime: 2022-04-03 12:34:35
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/models/feedforward_classifier.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -137,7 +137,7 @@ class FeedForwardClassifier(BaseModel):
         self.gt_lbls = []
 
     def accumulate_results(self):
-        self.losses.append(self.loss.data[0])
+        self.losses.append(self.loss.item())
         self.pr_probs.append(self.pred[0].cpu().numpy())
         self.pr_lbls.append(self.pred[1].cpu().numpy())
         self.gt_lbls.append(self.target.data.cpu().numpy())
@@ -165,7 +165,7 @@ class FeedForwardClassifier(BaseModel):
                             ('breakdown', breakdown)])
 
     def get_current_errors(self):
-        return OrderedDict([('CE', self.loss.data[0])])
+        return OrderedDict([('CE', self.loss.item())])
 
     def get_accumulated_errors(self):
         return OrderedDict([('CE', np.mean(self.losses))])
