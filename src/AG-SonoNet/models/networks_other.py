@@ -6,8 +6,8 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 21:08:27
-FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG_SonoNet/models/networks_other.py
+LastEditTime: 2022-04-03 15:35:45
+FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/models/networks_other.py
 Description: Functions & Classes
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
 '''
@@ -49,12 +49,12 @@ def weights_init_kaiming(m):
     classname = m.__class__.__name__
     #print(classname)
     if classname.find('Conv') != -1:
-        init.kaiming_normal(m.weight.data, a=0, mode='fan_in')
+        init.kaiming_normal_(m.weight.data, a=0, mode='fan_in')
     elif classname.find('Linear') != -1:
-        init.kaiming_normal(m.weight.data, a=0, mode='fan_in')
+        init.kaiming_normal_(m.weight.data, a=0, mode='fan_in')
     elif classname.find('BatchNorm') != -1:
-        init.normal(m.weight.data, 1.0, 0.02)
-        init.constant(m.bias.data, 0.0)
+        init.normal_(m.weight.data, 1.0, 0.02)
+        init.constant_(m.bias.data, 0.0)
 
 
 def weights_init_orthogonal(m):

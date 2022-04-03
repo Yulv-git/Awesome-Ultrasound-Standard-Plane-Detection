@@ -6,12 +6,13 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-03 12:43:54
+LastEditTime: 2022-04-03 16:41:05
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/train_FPD.py
 Description: FETAL_PLANES_DB Classification
 '''
 import argparse
 import numpy as np
+import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader, sampler
 from tqdm import tqdm
 from ipdb import set_trace
@@ -19,8 +20,6 @@ from ipdb import set_trace
 from dataio.loader import get_dataset, get_dataset_path
 from dataio.transformation import get_dataset_transformation
 from utils.util import json_file_to_pyobj
-from utils.error_logger import ErrorLogger
-from models.networks_other import adjust_learning_rate
 from models import get_model
 
 
@@ -73,17 +72,6 @@ class StratifiedSampler(object):
         return len(self.class_vector)
 
 
-# Not using anymore
-def check_warm_start(epoch, model, train_opts):
-    if hasattr(train_opts, "warm_start_epoch"):
-        if epoch < train_opts.warm_start_epoch:
-            print('... warm_start: lr={}'.format(train_opts.warm_start_lr))
-            adjust_learning_rate(model.optimizers[0], train_opts.warm_start_lr)
-        elif epoch == train_opts.warm_start_epoch:
-            print('... warm_start ended: lr={}'.format(model.opts.lr_rate))
-            adjust_learning_rate(model.optimizers[0], model.opts.lr_rate)
-
-
 def train(args):
     # Load options
     json_opts = json_file_to_pyobj(args.config)
@@ -133,9 +121,6 @@ def train(args):
     valid_loader = DataLoader(dataset=valid_dataset, num_workers=num_workers, batch_size=train_opts.batchSize, shuffle=True)
     test_loader  = DataLoader(dataset=test_dataset,  num_workers=num_workers, batch_size=train_opts.batchSize, shuffle=True)
 
-    # Visualisation Parameters
-    error_logger = ErrorLogger()
-
     # Training Function
     track_labels = np.arange(len(train_dataset.label_names))
     model.set_labels(track_labels)
@@ -145,15 +130,7 @@ def train(args):
         model.update_state(0)
 
     for epoch in range(model.which_epoch, train_opts.n_epochs):
-        print('(epoch: %d, total # iters: %d)' % (epoch, len(train_loader)))
-
-        # # # --- Start ---
-        # import matplotlib.pyplot as plt
-        # plt.ion()
-        # plt.figure()
-        # target_arr = np.zeros(14)
-        # # # --- End ---
-
+        print('(epoch: %d, total # iters: %d)' % (epoch, len(train_loader)))        
         # Training Iterations
         for epoch_iter, (images, labels) in tqdm(enumerate(train_loader, 1), total=len(train_loader)):
             # Make a training update
@@ -167,53 +144,24 @@ def train(args):
             if train_opts.max_it == epoch_iter:
                 break
 
-            # # # --- visualise distribution ---
-            # for lab in labels.numpy():
-            #     target_arr[lab] += 1
-            # plt.clf(); plt.bar(train_dataset.label_names, target_arr); plt.pause(0.01)
-            # # # --- End ---
-
-            # Visualise predictions
-            if epoch_iter <= 100:
-                visuals = model.get_current_visuals()
-
-            # Error visualisation
-            errors = model.get_current_errors()
-            error_logger.update(errors, split='train')
-
         # Validation and Testing Iterations
-        pr_lbls = []
-        gt_lbls = []
         for loader, split in zip([valid_loader, test_loader], ['validation', 'test']):
             model.reset_results()
             for epoch_iter, (images, labels) in tqdm(enumerate(loader, 1), total=len(loader)):
-
                 # Make a forward pass with the model
                 model.set_input(images, labels)
                 model.validate()
 
-                # Visualise predictions
-                visuals = model.get_current_visuals()
-
                 if train_opts.max_it == epoch_iter:
                     break
 
-            # Error visualisation
-            errors = model.get_accumulated_errors()
-            stats = model.get_classification_stats()
-            error_logger.update({**errors, **stats}, split=split)
-
             # save validation error
+            errors = model.get_accumulated_errors()
             if split == 'validation':
                 valid_err = errors['CE']
 
-        # Update the plots
-        for split in ['train', 'validation', 'test']:
-            # exclude bckground
-            #track_labels = np.delete(track_labels, 3)
-            #show_labels = train_dataset.label_names[:3] + train_dataset.label_names[4:]
-            show_labels = train_dataset.label_names
-        error_logger.reset()
+            stats = model.get_classification_stats()
+            print('epoch: {}\tACC: {}'.format(epoch, stats['accuracy']))
 
         # Save the model parameters
         if epoch % train_opts.save_epoch_freq == 0:

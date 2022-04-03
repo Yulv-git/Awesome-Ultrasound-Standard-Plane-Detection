@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-04-03 12:57:10
+ * @LastEditTime: 2022-04-03 16:22:04
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -84,7 +84,7 @@ Standard Plane --> SP | Anatomical Structure --> AS
 
 - [SonoNet](./src/SonoNet/): [infer.py](./src/SonoNet/infer.py)
 - [ITN](./src/ITN/): [train.py](./src/ITN/train.py), [infer.py](./src/ITN/infer.py)
-- [AG-SonoNet](./src/AG-SonoNet/)
+- [AG-SonoNet](./src/AG-SonoNet/): [train_FPD.py](./src/AG-SonoNet/train_FPD.py)
 - [AgentSPL](./src/AgentSPL/)
 
 # 4. Acknowledgements

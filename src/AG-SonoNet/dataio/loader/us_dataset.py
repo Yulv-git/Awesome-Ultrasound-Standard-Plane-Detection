@@ -134,7 +134,7 @@ class UltraSoundDataset_FPD(data.Dataset):
         self.n_class = len(self.label_names)
         class_weight = np.zeros(self.n_class)
         for lab in range(self.n_class):
-            class_weight[lab] = np.sum(self.labels[:] == lab)
+            class_weight[lab] = max(np.sum(self.labels[:] == lab), 1)
         class_weight = 1 / class_weight
     
         self.weight = np.zeros(len(self.labels))

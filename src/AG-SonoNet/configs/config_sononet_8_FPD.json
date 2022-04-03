@@ -7,9 +7,9 @@
         "lr_policy": "step_warmstart",
         "lr_decay_iters": 25,
         "lr_red_factor": 0.1,
-        "batchSize": 128,
+        "batchSize": 256,
         "preloadData": false,
-        "num_workers" : 8,
+        "num_workers" : 0,
         "sampler": "weighted2",
         "bgd_weight_multiplier": 13
     },

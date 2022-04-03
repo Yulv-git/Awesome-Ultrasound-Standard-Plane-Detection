@@ -4,7 +4,7 @@
  * @Date: 2022-03-20 18:17:37
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-04-03 12:31:26
+ * @LastEditTime: 2022-04-03 16:14:25
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/README.md
  * @Description: Modify here please
  * Init from https://github.com/ozan-oktay/Attention-Gated-Networks eee4881fdc31920efd873773e0b744df8dacbfb6
@@ -42,3 +42,9 @@ pip install -e git+https://github.com/ozan-oktay/torchsample.git#egg=torchsample
 ```
 
 **Please note that the original repository does not specify the environment in which its code is run, such as the versions of the various Python libraries, which may cause errors in the run, such as when using VisDOM for visualization.**
+
+## Train FETAL_PLANES_DB
+
+``` bash
+python ./train_FPD.py
+```

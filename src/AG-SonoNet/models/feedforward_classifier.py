@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-03 12:34:35
+LastEditTime: 2022-04-03 15:23:39
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AG-SonoNet/models/feedforward_classifier.py
 Description: Modify here please
 Init from https://github.com/ozan-oktay/Attention-Gated-Networks
@@ -101,10 +101,11 @@ class FeedForwardClassifier(BaseModel):
         if split == 'train':
             self.prediction = self.net(Variable(self.input))
         elif split in ['validation', 'test']:
-            self.prediction = self.net(Variable(self.input, volatile=True))
-            # Apply a softmax and return a segmentation map
-            self.logits = self.net.apply_argmax_softmax(self.prediction)
-            self.pred = self.logits.data.max(1)
+            with torch.no_grad():
+                self.prediction = self.net(Variable(self.input))
+                # Apply a softmax and return a segmentation map
+                self.logits = self.net.apply_argmax_softmax(self.prediction)
+                self.pred = self.logits.data.max(1)
 
     def backward(self):
         #print(self.net.apply_argmax_softmax(self.prediction), self.target)
