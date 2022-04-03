@@ -6,12 +6,11 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 23:07:00
+LastEditTime: 2022-04-03 17:12:09
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/utils.py
 Description: Modify here please
 Init from https://github.com/wulalago/AgentSPL
 '''
-import glob
 import os
 import numpy as np
 import cv2
@@ -59,29 +58,26 @@ def get_matrix(start_vector, end_vector):
     half_angle = angle / 2.
 
     # calculate the quaternions based on the axis vector and axis angle
-    quaternions = np.array(
-        [
-            np.cos(half_angle),
-            np.sin(half_angle) * axis_vector[0],
-            np.sin(half_angle) * axis_vector[1],
-            np.sin(half_angle) * axis_vector[2]
-        ]
-    )
+    quaternions = np.array([
+        np.cos(half_angle),
+        np.sin(half_angle) * axis_vector[0],
+        np.sin(half_angle) * axis_vector[1],
+        np.sin(half_angle) * axis_vector[2]
+        ])
     w, x, y, z = quaternions
 
     # calculate the rotation matrix based on the quaternions
-    # rotation_matrix = np.array(
-    #     [
-    #         [1 - 2 * y * y - 2 * z * z, 2 * (x * y - z * w), 2 * (x * z + y * w)],
-    #         [2 * (x * y + z * w), 1 - 2 * x * x - 2 * z * z, 2 * (y * z - x * w)],
-    #         [2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * x * x - 2 * y * y],
-    #     ]
-    # )
+    # rotation_matrix = np.array([
+    #     [1 - 2 * y * y - 2 * z * z, 2 * (x * y - z * w), 2 * (x * z + y * w)],
+    #     [2 * (x * y + z * w), 1 - 2 * x * x - 2 * z * z, 2 * (y * z - x * w)],
+    #     [2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * x * x - 2 * y * y],
+    #     ])
     rotation_matrix = np.array([
         [w*w + x*x - y*y - z*z, 2 * (x * y - z * w), 2 * (x * z + y * w)],
         [2 * (x * y + z * w), w*w - x*x + y*y - z*z, 2 * (y * z - x * w)],
         [2 * (x * z - y * w), 2 * (y * z + x * w), w*w - x*x - y*y + z*z]
     ])
+
     return quaternions, rotation_matrix
 
 
@@ -133,6 +129,7 @@ def get_plane_from_matrix(reader, rotate_matrix, center):
 
     # transform the plane from the reslice to the numpy data
     numpy_data = get_numpy_from_reslice(reslice)
+
     return numpy_data
 
 
@@ -144,6 +141,7 @@ def get_numpy_from_reslice(reslice):
     numpy_data = numpy_data.reshape(dims[2], dims[1], dims[0])
     numpy_data = numpy_data.transpose(2, 1, 0)
     numpy_data = np.squeeze(numpy_data)
+
     return numpy_data
 
 
@@ -164,14 +162,11 @@ def get_plane(reader, plane_parameter):
     # we let the point be the closet point to the origin in the plane to ensure the image fully got.
     a, b, c = plane_normal
     k = -2*plane_p / (a*a+b*b+c*c)
-
     point = np.array([-0.5*a*k, -0.5*b*k, -0.5*c*k], dtype=np.float32)
 
     # we set the default vector before rotate as z unit normal vector
     z_normal = np.array([0, 0, 1], dtype=np.float32)
-
     _, rotate_mat = get_matrix(z_normal, plane_normal)
-
     plane = get_plane_from_matrix(reader=reader, rotate_matrix=rotate_mat, center=point)
 
     return plane
@@ -191,6 +186,7 @@ def read_list(txt_path, data_path, mode):
     reader_list = [os.path.join(data_path, line.split("\n")[0]) for line in reader_list]
     fid.close()
     random.shuffle(reader_list)
+
     return reader_list
 
 
@@ -203,7 +199,6 @@ class AvgMeter(object):
         self.sum = 0
         self.count = 0
         self.val = 0
-
         self.reset()
 
     def reset(self):
@@ -226,6 +221,7 @@ def image_process(image, desired_size=224):
     image = pad_to_desire_size(image, desired_size=desired_size)
     image = image[np.newaxis, :, :].astype(np.float32)
     image = image / 255.
+
     return image
 
 
@@ -238,7 +234,6 @@ def pad_to_desire_size(x, desired_size=224):
     :param desired_size: default is 224
     :return:
     """
-
     old_size = x.shape[:2]
     # old_size is in (height, width) format
 
@@ -250,13 +245,11 @@ def pad_to_desire_size(x, desired_size=224):
 
     delta_w = desired_size - new_size[1]
     delta_h = desired_size - new_size[0]
-
     top, bottom = delta_h // 2, delta_h - (delta_h // 2)
     left, right = delta_w // 2, delta_w - (delta_w // 2)
-
     color = [0, 0, 0]
-
     x = cv2.copyMakeBorder(x, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)
+    
     return x
 
 

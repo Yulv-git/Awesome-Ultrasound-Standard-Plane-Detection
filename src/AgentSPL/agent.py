@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 23:04:38
+LastEditTime: 2022-04-03 17:14:05
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/agent.py
 Description: Modify here please
 Init from https://github.com/wulalago/AgentSPL
@@ -96,6 +96,7 @@ class Agent(object):
 
         action_value_arr = np.squeeze(action_value_arr)
         action = action_value_arr.argmax(0)
+
         if return_q:
             return action, action_value_arr
         else:

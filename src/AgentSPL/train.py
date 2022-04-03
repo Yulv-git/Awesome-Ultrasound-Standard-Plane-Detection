@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 23:27:10
+LastEditTime: 2022-04-03 17:16:14
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/train.py
 Description: Modify here please
 Init from https://github.com/wulalago/AgentSPL
@@ -72,6 +72,7 @@ def train_epoch(train_list, args, agent):
                 epoch_adi.update(adi)
 
                 break
+
     return epoch_loss.avg, epoch_angle.avg, epoch_distance.avg, epoch_adi.avg
 
 
@@ -110,6 +111,7 @@ def val_epoch(val_list, args, agent):
                 epoch_adi.update(adi)
 
                 break
+
     return epoch_angle.avg, epoch_distance.avg, epoch_adi.avg
 
 

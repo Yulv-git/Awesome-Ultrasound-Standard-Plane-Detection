@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 23:27:48
+LastEditTime: 2022-04-03 17:15:37
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/create_training_sample.py
 Description: Modify here please
 Init from https://github.com/wulalago/AgentSPL
@@ -105,7 +105,6 @@ def main(args):
                     train_id, t, info_log["distance"], info_log["angle"], action), end="")
 
             if t == args.max_step:
-
                 dis_avg.update(info_log["distance"])
                 ang_avg.update(info_log["angle"])
                 adi_avg.update(adi)
@@ -137,6 +136,7 @@ def main(args):
                 np.save(os.path.join(args.output_path, "RNN_training_samples", "{}_yes.npy".format(train_id)),
                         np.array(adi_list, dtype=np.float32))
                 np.save(os.path.join(args.output_path, "RNN_training_samples", "{}_plane.npy".format(train_id)), train_plane_seq)
+
                 break
 
 

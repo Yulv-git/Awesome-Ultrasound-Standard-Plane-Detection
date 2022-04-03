@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-03-23 23:05:43
+LastEditTime: 2022-04-03 17:13:04
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/env.py
 Description: This is to define the environment in the reinforcement learning.
 Init from https://github.com/wulalago/AgentSPL
@@ -28,7 +28,6 @@ class USVolumeEnv(gym.Env):
         init the environment
         :param path: volume and annotation path
         :param option: option about the environment
-
         ==============================
         option including as follow:
         annotation: whether load the mean annotation or once, [First, Second, Mean], string
@@ -93,6 +92,7 @@ class USVolumeEnv(gym.Env):
             "angle": angle,
             "termination": self.termination
         }
+
         return obj, reward, self.termination, info
 
     def take_action(self, action):
@@ -167,8 +167,7 @@ class USVolumeEnv(gym.Env):
         get the current plane data
         :return:
         """
-        current_plane = get_plane(reader=self.volume,
-                                  plane_parameter=self.current_plane)
+        current_plane = get_plane(reader=self.volume, plane_parameter=self.current_plane)
         return current_plane
 
     def reset(self):
