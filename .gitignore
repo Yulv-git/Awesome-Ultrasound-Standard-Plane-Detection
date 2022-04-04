@@ -137,3 +137,9 @@ dmypy.json
 */FETAL_PLANES_ZENODO/
 */FETAL_PLANES_DB/Images/
 FETAL_PLANES_ZENODO.zip?download=1
+
+# wandb
+wandb
+
+# output
+*/DCNN-MF-SP/output/
