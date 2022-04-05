@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-04-03 18:28:14
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-05 17:31:12
+LastEditTime: 2022-04-05 17:48:14
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/DCNN-MF-SP/main.py
 Description: Evaluation of Deep Convolutional Neural Networks for Automatic Classification of Common Maternal Fetal Ultrasound Planes
 '''
@@ -53,13 +53,14 @@ def train_val(args, train_generator, valid_generator, wandb_callback):
     plt.plot(history.history['accuracy'], label='train')
     plt.plot(history.history['val_accuracy'], label='test')
     plt.legend()
-    plt.savefig('{}/{}_training_acc_loss.png'.format(args.save_dir, args.model_name))
+    plt.savefig('{}/{}{}_training_acc_loss.png'.format(args.save_dir, args.model_name, args.extra_string))
     
     # Save the model.
-    model.save('{}/{}'.format(args.save_dir, args.model_name), save_format='tf')
+    model.save('{}/{}{}'.format(args.save_dir, args.model_name, args.extra_string), save_format='tf')
 
 
 def main(args):
+    args.extra_string = '_pretrained' if args.imagenet_pretrained else ''
     check_dir(args.save_dir)
     # wandb
     wandb.login(key=args.API_keys)  # Link to the platform.
@@ -97,7 +98,7 @@ if __name__ == '__main__':
     parse.add_argument('--model_type', type=str, default='base_model',
                        choices=['base_model', 'VGG', 'ResNet', 'DenseNet', 'EfficientNet', 'ViT'])
     parse.add_argument('--model_name', type=str, default='base_model',
-                       choices=['base_model', 'VGG19', 'ResNet50', 'DenseNet', 'EfficientNetB6', 'ViT'])
+                       choices=['base_model', 'VGG19', 'ResNet50', 'DenseNet121', 'EfficientNetB6', 'ViT'])
     parse.add_argument('--imagenet_pretrained', type=bool, default=False)
     parse.add_argument('--load_model_weights', type=bool, default=False)
 
