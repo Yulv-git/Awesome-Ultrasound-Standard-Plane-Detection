@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-04-05 16:33:19
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-05 19:52:00
+LastEditTime: 2022-04-05 23:22:58
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/DCNN-MF-SP/Networks/ViT.py
 Description: Modify here please
 Init from https://github.com/Oussamayousre/automatic-classification-of-common-maternal-fetal-ultrasound-planes b784f0107fd8cd0368622c5da09a0b41d0a3eb04
@@ -63,7 +63,7 @@ class PatchEncoder(layers.Layer):
 
 
 # Build the ViT model.
-def ViT(input_channels=3, img_size=(256, 256), cls_num=6, pretrained=False,
+def ViT(model_name='ViT', input_channels=3, img_size=(256, 256), cls_num=6, pretrained=False,
         patch_size=6, # Size of the patches to be extract from the input images.
         projection_dim=64,
         num_heads=8,
@@ -114,4 +114,4 @@ def ViT(input_channels=3, img_size=(256, 256), cls_num=6, pretrained=False,
 
 
 if __name__ == '__main__':
-    eval("ViT")(input_channels=3, img_size=(256, 256), cls_num=6)
+    ViT(model_name='ViT', input_channels=3, img_size=(256, 256), cls_num=6)

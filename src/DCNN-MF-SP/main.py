@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-04-03 18:28:14
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-05 17:48:14
+LastEditTime: 2022-04-05 23:50:35
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/DCNN-MF-SP/main.py
 Description: Evaluation of Deep Convolutional Neural Networks for Automatic Classification of Common Maternal Fetal Ultrasound Planes
 '''
@@ -15,17 +15,17 @@ import wandb
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from keras.callbacks import ReduceLROnPlateau
-from tensorflow.keras.models import load_model
-from wandb.keras import WandbCallback
+from ipdb import set_trace
 
 from utils import check_dir, recall_m, precision_m, f1_m, load_train_generator
-from Networks import base_model, VGG, ResNet, DenseNet, EfficientNet, ViT
+from Networks import base_model, DCNN, EfficientNet, ViT
 
 
 def train_val(args, train_generator, valid_generator, wandb_callback):
     # Baseline Model
-    model = getattr(eval(args.model_type), args.model_name)(
-        input_channels=args.input_channels, img_size=args.img_size, cls_num=args.cls_num, pretrained=args.imagenet_pretrained)
+    model = getattr(eval(args.model_type), args.model_type)(model_name=args.model_name, input_channels=args.input_channels,
+                                                            img_size=args.img_size, cls_num=args.cls_num,
+                                                            pretrained=args.imagenet_pretrained)
     # Plot the model Architecture.
     tf.keras.utils.plot_model(model, to_file='{}/{}.png'.format(args.save_dir, args.model_name))
     
@@ -76,7 +76,7 @@ def main(args):
 
 
 if __name__ == '__main__':
-    parse = argparse.ArgumentParser(description='')
+    parse = argparse.ArgumentParser(description='DCNN-MF-SP')
     # wandb parameters
     parse.add_argument('--API_keys', type=str, default='f425e6f003db01e57ff6f92422528397116e3f7b', help="Your wandb API keys")
     parse.add_argument('--project', type=str, default='DCNN-MF-SP')
@@ -96,9 +96,15 @@ if __name__ == '__main__':
     parse.add_argument('--epochs', type=int, default=15)
     parse.add_argument('--save_dir', type=str, default='./output')
     parse.add_argument('--model_type', type=str, default='base_model',
-                       choices=['base_model', 'VGG', 'ResNet', 'DenseNet', 'EfficientNet', 'ViT'])
+                       choices=['base_model',
+                                'DCNN',
+                                'EfficientNet',
+                                'ViT'])
     parse.add_argument('--model_name', type=str, default='base_model',
-                       choices=['base_model', 'VGG19', 'ResNet50', 'DenseNet121', 'EfficientNetB6', 'ViT'])
+                       choices=['base_model',
+                                'VGG16', 'VGG19', 'MobileNet', 'InceptionV3', 'ResNet18', 'ResNet34', 'ResNet50', 'ResNet101', 'ResNet152', 'DenseNet121', 'DenseNet169', ...,
+                                'EfficientNetB0', ..., 'EfficientNetB6', 'EfficientNetB7',
+                                'ViT'])
     parse.add_argument('--imagenet_pretrained', type=bool, default=False)
     parse.add_argument('--load_model_weights', type=bool, default=False)
 
