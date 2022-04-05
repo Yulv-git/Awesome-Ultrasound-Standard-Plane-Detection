@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-04-05 16:33:19
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-05 17:10:27
+LastEditTime: 2022-04-05 19:52:00
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/DCNN-MF-SP/Networks/ViT.py
 Description: Modify here please
 Init from https://github.com/Oussamayousre/automatic-classification-of-common-maternal-fetal-ultrasound-planes b784f0107fd8cd0368622c5da09a0b41d0a3eb04
@@ -53,9 +53,7 @@ class PatchEncoder(layers.Layer):
         super(PatchEncoder, self).__init__()
         self.num_patches = num_patches
         self.projection = layers.Dense(units=projection_dim)
-        self.position_embedding = layers.Embedding(
-            input_dim=num_patches, output_dim=projection_dim
-        )
+        self.position_embedding = layers.Embedding(input_dim=num_patches, output_dim=projection_dim)
 
     def call(self, patch):
         positions = tf.range(start=0, limit=self.num_patches, delta=1)
