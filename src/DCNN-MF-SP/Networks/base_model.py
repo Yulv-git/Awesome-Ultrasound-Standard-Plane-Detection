@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-04-04 21:00:36
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-05 23:22:34
+LastEditTime: 2022-04-08 22:10:15
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/DCNN-MF-SP/Networks/base_model.py
 Description: Init from https://github.com/Oussamayousre/automatic-classification-of-common-maternal-fetal-ultrasound-planes b784f0107fd8cd0368622c5da09a0b41d0a3eb04
 '''
@@ -15,7 +15,7 @@ from keras.layers import Dense, Flatten, Conv2D, MaxPooling2D, BatchNormalizatio
 
 
 def base_model(model_name='base_model', input_channels=3, img_size=(256, 256), cls_num=6, pretrained=False):
-    model = Sequential()
+    model = Sequential(name=model_name)
     model.add(Conv2D(32, (3, 3), padding="same", input_shape=(img_size[0], img_size[1], input_channels)))
     model.add(Activation("relu"))
     model.add(BatchNormalization(axis=1))
