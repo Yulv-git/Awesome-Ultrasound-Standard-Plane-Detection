@@ -6,7 +6,7 @@ Email: yulvchi@qq.com
 Date: 2022-03-20 18:17:37
 Motto: Entities should not be multiplied unnecessarily.
 LastEditors: Shuangchi He
-LastEditTime: 2022-04-03 17:13:04
+LastEditTime: 2022-04-18 11:23:54
 FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/src/AgentSPL/env.py
 Description: This is to define the environment in the reinforcement learning.
 Init from https://github.com/wulalago/AgentSPL
@@ -57,7 +57,7 @@ class USVolumeEnv(gym.Env):
         self.current_y = copy.copy(self.start_y)
         self.current_z = copy.copy(self.start_z)
 
-        # copy the the start plane parameter to the current parameter
+        # copy the start plane parameter to the current parameter
         self.current_plane = copy.copy(self.start_plane)
 
         # define the step angle and step distance
