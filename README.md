@@ -4,15 +4,15 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-04-05 17:36:39
+ * @LastEditTime: 2022-05-03 12:35:34
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
- * @Description: A curated list of awesome ultrasound standard plane detection.
+ * @Description: A curated list of awesome ultrasound standard plane detection/localization/localisation/extraction/classification/selection/identification/recognition.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
 -->
 
 <h1><center> Awesome-Ultrasound-Standard-Plane-Detection </center></h1>
 
-A curated list of awesome ultrasound standard plane detection.
+A curated list of awesome ultrasound standard plane detection/localization/localisation/extraction/classification/selection/identification/recognition.
 
 ---
 
@@ -23,7 +23,7 @@ A curated list of awesome ultrasound standard plane detection.
 
 ---
 
-# 1. Papers
+## 1. Papers
 
 | Papers & Code | Short for Schemes | Notes |
 | :------------ | :---------------: | :---- |
@@ -70,7 +70,7 @@ A curated list of awesome ultrasound standard plane detection.
 Tags:
 Standard Plane --> SP | Anatomical Structure --> AS
 
-# 2. Public Datasets
+## 2. Public Datasets
 
 - **FETAL_PLANES_DB**: Common maternal-fetal ultrasound images. | [Official](https://zenodo.org/record/3904280#) | [Here](./data/FETAL_PLANES_DB/)
   - 6 Classes:
@@ -80,7 +80,7 @@ Standard Plane --> SP | Anatomical Structure --> AS
   - Meta Information: Patient number, US machine, Operator.
   - Training-test split used in the Nature Sci Rep paper.
 
-# 3. Practice
+## 3. Practice
 
 - [SonoNet](./src/SonoNet/): [infer.py](./src/SonoNet/infer.py)
 - [ITN](./src/ITN/): [train.py](./src/ITN/train.py), [infer.py](./src/ITN/infer.py)
@@ -88,6 +88,6 @@ Standard Plane --> SP | Anatomical Structure --> AS
 - [AgentSPL](./src/AgentSPL/)
 - [DCNN-MF-SP](./src/DCNN-MF-SP/): [main.py](./src/DCNN-MF-SP/main.py)
 
-# 4. Acknowledgements
+## 4. Acknowledgements
 
 Thanks to the contributors of all the above papers, code, public datasets, and other resources.
