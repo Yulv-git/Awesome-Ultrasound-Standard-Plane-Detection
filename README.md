@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-05-03 12:35:34
+ * @LastEditTime: 2022-06-18 15:30:32
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection/localization/localisation/extraction/classification/selection/identification/recognition.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -12,7 +12,7 @@
 
 <h1><center> Awesome-Ultrasound-Standard-Plane-Detection </center></h1>
 
-A curated list of awesome ultrasound standard plane detection/localization/localisation/extraction/classification/selection/identification/recognition.
+A curated list of ![Awesome](https://awesome.re/badge.svg) ultrasound standard plane detection/localization/localisation/extraction/classification/selection/identification/recognition.
 
 ---
 
@@ -91,3 +91,9 @@ Standard Plane --> SP | Anatomical Structure --> AS
 ## 4. Acknowledgements
 
 Thanks to the contributors of all the above papers, code, public datasets, and other resources.
+
+---
+
+<font size=4><b><big> Contributing </b></big></font>
+
+If you have any suggestions, improvements, please feel free to create issues or pull requests.
