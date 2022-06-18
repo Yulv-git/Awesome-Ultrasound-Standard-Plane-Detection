@@ -4,7 +4,7 @@
  * @Date: 2022-03-18 00:27:15
  * @Motto: Entities should not be multiplied unnecessarily.
  * @LastEditors: Shuangchi He
- * @LastEditTime: 2022-06-18 15:30:32
+ * @LastEditTime: 2022-06-18 15:39:39
  * @FilePath: /Awesome-Ultrasound-Standard-Plane-Detection/README.md
  * @Description: A curated list of awesome ultrasound standard plane detection/localization/localisation/extraction/classification/selection/identification/recognition.
  * Repository: https://github.com/Yulv-git/Awesome-Ultrasound-Standard-Plane-Detection
@@ -96,4 +96,4 @@ Thanks to the contributors of all the above papers, code, public datasets, and o
 
 <font size=4><b><big> Contributing </b></big></font>
 
-If you have any suggestions, improvements, please feel free to create issues or pull requests.
+If you have any suggestions or improvements, please feel free to create issues or pull requests.
