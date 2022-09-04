@@ -66,6 +66,7 @@ A curated list of ![Awesome](https://awesome.re/badge.svg) ultrasound standard p
 | Automatic Fetal Ultrasound Standard Plane Recognition Based on Deep Learning and IIoT [[Transactions on Industrial Informatics 2021]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9389489) | FUSPR | CNN, RNN, Spatial-temporal Feature, SP Classification |
 | Automatic quality assessment for 2D fetal sonographic standard plane based on multitask learning [[Medicine 2021]](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7850658/pdf/medi-100-e24427.pdf) | - | CNN, AS Classification, Object Detection, AS Localization, SP Quality Control |
 | Statistical Dependency Guided Contrastive Learning for Multiple Labeling in Prenatal Ultrasound [[MICCAI-MLMI 2021]](https://arxiv.org/pdf/2108.05055) | MLL-GCN-CRC | Word Embedding, GCN, CNN, Cluster Relabeled Contrastive Learning, Multi-label, AS Classification, SP Classification |
+| Agent with Tangent-based Formulation and Anatomical Perception for Standard Plane Localization in 3D Ultrasound [[MICCAI 2022]](https://arxiv.org/pdf/2207.00475) | - | Reinforcement Learning, Restructure the Action Space, Content-aware Regression Auxiliary Task, Spatial-anatomical Reward, CNN, Landmark Heatmap, SP Localization |
 
 Tags:
 Standard Plane --> SP | Anatomical Structure --> AS
