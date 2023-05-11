@@ -12,13 +12,19 @@
 
 <h1><center> Awesome-Ultrasound-Standard-Plane-Detection </center></h1>
 
-A curated list of ![Awesome](https://awesome.re/badge.svg) ultrasound standard plane detection/localization/localisation/extraction/classification/selection/identification/recognition.
+A curated list of ![Awesome](https://awesome.re/badge.svg) ultrasound standard/diagnostic plane detection/localization/localisation/extraction/classification/selection/identification/recognition.
 
 ---
 
 - [1. Papers](#1-papers)
 - [2. Public Datasets](#2-public-datasets)
-- [3. Practice](#3-practice)
+  - [2.1. FETAL\_PLANES\_DB: Common maternal-fetal ultrasound images](#21-fetal_planes_db-common-maternal-fetal-ultrasound-images)
+- [3. Code](#3-code)
+  - [3.1. SonoNet](#31-sononet)
+  - [3.2. ITN](#32-itn)
+  - [3.3. AG-SonoNet](#33-ag-sononet)
+  - [3.4. AgentSPL](#34-agentspl)
+  - [3.5. DCNN-MF-SP](#35-dcnn-mf-sp)
 - [4. Acknowledgements](#4-acknowledgements)
 
 ---
@@ -73,21 +79,46 @@ Standard Plane --> SP | Anatomical Structure --> AS
 
 ## 2. Public Datasets
 
-- **FETAL_PLANES_DB**: Common maternal-fetal ultrasound images. | [Official](https://zenodo.org/record/3904280#) | [Here](./data/FETAL_PLANES_DB/)
-  - 6 Classes:
-    - Fetal Anatomical Planes: Abdomen, Brain (Further categorized into the 3 most common fetal brain planes: Trans-thalamic, Trans-cerebellum, Trans-ventricular), Femur, Thorax.
-    - Mother’s Cervix.
-    - General Category: Including any other less common image plane.
-  - Meta Information: Patient number, US machine, Operator.
-  - Training-test split used in the Nature Sci Rep paper.
+### 2.1. FETAL_PLANES_DB: Common maternal-fetal ultrasound images
 
-## 3. Practice
+[Official](https://zenodo.org/record/3904280#) | [Here](./data/FETAL_PLANES_DB/)
 
-- [SonoNet](./src/SonoNet/): [infer.py](./src/SonoNet/infer.py)
-- [ITN](./src/ITN/): [train.py](./src/ITN/train.py), [infer.py](./src/ITN/infer.py)
-- [AG-SonoNet](./src/AG-SonoNet/): [train_FPD.py](./src/AG-SonoNet/train_FPD.py)
-- [AgentSPL](./src/AgentSPL/)
-- [DCNN-MF-SP](./src/DCNN-MF-SP/): [main.py](./src/DCNN-MF-SP/main.py)
+- 6 Classes:
+  - Fetal Anatomical Planes: Abdomen, Brain (Further categorized into the 3 most common fetal brain planes: Trans-thalamic, Trans-cerebellum, Trans-ventricular), Femur, Thorax.
+  - Mother’s Cervix.
+  - General Category: Including any other less common image plane.
+- Meta Information: Patient number, US machine, Operator.
+- Training-test split used in the Nature Sci Rep paper.
+
+## 3. Code
+
+### 3.1. SonoNet
+
+[Official](https://github.com/rdroste/SonoNet_PyTorch) | [Here](./code/SonoNet/)
+
+- Practice: [infer.py](./code/SonoNet/infer.py)
+
+### 3.2. ITN
+
+[Official](https://github.com/yuanwei1989/plane-detection) | [Here](./code/ITN/)
+
+- Practice: [train.py](./code/ITN/train.py), [infer.py](./code/ITN/infer.py)
+
+### 3.3. AG-SonoNet
+
+[Official](https://github.com/ozan-oktay/Attention-Gated-Networks) | [Here](./code/AG-SonoNet/)
+
+- Practice: [train_FPD_Classification.py](./code/AG-SonoNet/train_FPD_Classification.py)
+
+### 3.4. AgentSPL
+
+[Official](https://github.com/wulalago/AgentPL) | [Here](./code/AgentSPL/)
+
+### 3.5. DCNN-MF-SP
+
+[Official](https://github.com/Oussamayousre/automatic-classification-of-common-maternal-fetal-ultrasound-plane) | [Here](./code/DCNN-MF-SP/)
+
+- Practice: [main.py](./code/DCNN-MF-SP/main.py)
 
 ## 4. Acknowledgements
 
