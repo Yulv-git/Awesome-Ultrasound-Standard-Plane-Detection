@@ -91,7 +91,7 @@ Standard Plane --> SP | Anatomical Structure --> AS
 - Meta Information: Patient number, US machine, Operator.
 - Training-test split used in the Nature Sci Rep paper.
 
-### 2.2. FPUS23: An Ultrasound Fetus Phantom Dataset
+### 2.2. FPUS23: Ultrasound Fetus Phantom Dataset
 
 [Official](https://github.com/bharathprabakaran/FPUS23)
 
