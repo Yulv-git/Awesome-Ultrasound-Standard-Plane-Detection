@@ -19,6 +19,7 @@ A curated list of ![Awesome](https://awesome.re/badge.svg) ultrasound standard/d
 - [1. Papers](#1-papers)
 - [2. Public Datasets](#2-public-datasets)
   - [2.1. FETAL\_PLANES\_DB: Common maternal-fetal ultrasound images](#21-fetal_planes_db-common-maternal-fetal-ultrasound-images)
+  - [2.2. FPUS23: An Ultrasound Fetus Phantom Dataset](#22-fpus23-an-ultrasound-fetus-phantom-dataset)
 - [3. Code](#3-code)
   - [3.1. SonoNet](#31-sononet)
   - [3.2. ITN](#32-itn)
@@ -89,6 +90,12 @@ Standard Plane --> SP | Anatomical Structure --> AS
   - General Category: Including any other less common image plane.
 - Meta Information: Patient number, US machine, Operator.
 - Training-test split used in the Nature Sci Rep paper.
+
+### 2.2. FPUS23: An Ultrasound Fetus Phantom Dataset
+
+[Official](https://github.com/bharathprabakaran/FPUS23)
+
+[FPUS23: An Ultrasound Fetus Phantom Dataset with Deep Neural Network Evaluations for Fetus Orientations, Fetal Planes, and Anatomical Features](https://arxiv.org/abs/2303.07852)
 
 ## 3. Code
 
